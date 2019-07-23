@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
-
 {% load bootstrap_tags %}
+{% block title %}Register Account{% endblock %}
 
-{% block title %} Register {% endblock %}
-
-{% block heading %}Register Page {% endblock %}
+<main class="container">
+{% block heading %}<h1>Register Page</h1>{% endblock %}
 
 {% block content %}
-    <p>Already Registered? Click <a href="{% url 'login' %}">here.</a></p>
     <form method="POST">
     {% csrf_token %}
     {{ registration_form | as_bootstrap }}
     <button type="submit">Register</button>
     </form>
-
+    <br>
+    <p>Already Registered? Click <a href="{% url 'login' %}">here.</a></p>
 {% endblock %}
+</main>
