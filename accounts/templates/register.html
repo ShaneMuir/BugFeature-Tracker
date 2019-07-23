@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_tags %}
+
+{% block title %} Register {% endblock %}
+
+{% block heading %}Register Page {% endblock %}
+
+{% block content %}
+    <p>Already Registered? Click <a href="{% url 'login' %}">here.</a></p>
+    <form method="POST">
+    {% csrf_token %}
+    {{ registration_form | as_bootstrap }}
+    <button type="submit">Register</button>
+    </form>
+
+{% endblock %}
