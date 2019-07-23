@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 *.c9
 env.py
+sent_emails/
 
 # C extensions
 *.so
