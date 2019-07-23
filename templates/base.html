@@ -1,0 +1,30 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} {% endblock %}</title>
+
+    <link rel="icon" type="image/png" href="#">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+
+    <!-- My custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" /> {% block head_js %} {% endblock %}
+</head>
+
+<body>
+    {% if messages %}
+    <div>
+        {% for message in messages %} {{ message }} {% endfor %}
+    </div>
+    {% endif %} {% block heading %} {% endblock %} {% block content %} {% endblock %}
+
+
+</body>
+
+</html>
