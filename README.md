@@ -1,5 +1,7 @@
 # Milestone 5
 
+[![Build Status](https://travis-ci.org/ShaneMuir/milestone-5.svg?branch=master)](https://travis-ci.org/ShaneMuir/milestone-5)
+
 This is my last milestone project for the Code Institute course.
 
 ## Brief 
