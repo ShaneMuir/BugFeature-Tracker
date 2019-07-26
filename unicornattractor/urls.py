@@ -23,3 +23,11 @@ urlpatterns = [
     url(r'^', include(home_urls)),
     url(r'^accounts/', include(accounts_urls)),
 ]
+
+
+admin.site.site_header = "Unicorn Attractor"
+admin.site.site_title = "Admin Area"
+admin.site.index_title = "Welcome"
+
+from django.contrib.auth.models import Group
+admin.site.unregister(Group)
