@@ -2,14 +2,14 @@
 {% load bootstrap_tags %}
 {% block title %}Register Account{% endblock %}
 
-<main class="container">
+<main class="container form-container">
 {% block heading %}<h1>Register Page</h1>{% endblock %}
 
 {% block content %}
     <form method="POST">
     {% csrf_token %}
     {{ registration_form | as_bootstrap }}
-    <button type="submit">Register</button>
+    <button type="button submit" class="btn btn-outline-primary">Register</button>
     </form>
     <br>
     <p>Already Registered? Click <a href="{% url 'login' %}">here.</a></p>
