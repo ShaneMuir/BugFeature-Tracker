@@ -1,6 +1,9 @@
 body {
     font-family: Arial;
-    padding-top: 70px;
+}
+
+main {
+    margin-top: 2rem;
 }
 
 footer {
@@ -17,4 +20,12 @@ footer {
 
 .accountform {
     padding-top: 20px;
+}
+
+.form-container {
+    margin-top: 2rem;
+}
+
+.card-link {
+    float: right;
 }

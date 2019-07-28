@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'django_forms_bootstrap',
     'storages',
+    'bugs',
 ]
 
 MIDDLEWARE = [
