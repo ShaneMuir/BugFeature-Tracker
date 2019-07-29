@@ -5,6 +5,7 @@ __pycache__/
 *.c9
 env.py
 sent_emails/
+unicornattractor/settings/local.py
 
 # C extensions
 *.so
