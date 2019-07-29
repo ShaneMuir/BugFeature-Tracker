@@ -16,8 +16,9 @@ ALLOWED_HOSTS = [
 ] 
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.parse.encode('ascii')(os.environ.get('DATABASE_URL'))
     }
+
 
 STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
