@@ -6,7 +6,6 @@ from django.utils import timezone
 # Create your models here.
 class Bug(models.Model):
     """A Bug Post"""
-
     STATUS_CHOICES = (
         ('To do', 'To do'),
         ('In progress', 'In progress'),
@@ -22,6 +21,7 @@ class Bug(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     bug_upvotes = models.IntegerField(default=0)
+    views = models.IntegerField(default=0)
     
     
     def __str__(self):
@@ -30,7 +30,6 @@ class Bug(models.Model):
 
 class upVotes(models.Model):
     """Bug upvotes"""
-    
     upvote_user = models.ForeignKey(User, on_delete=models.CASCADE)
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
     
@@ -41,7 +40,6 @@ class upVotes(models.Model):
 
 class BugComment(models.Model):
     """Bug Comments"""
-    
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField(max_length=256, blank=False)
