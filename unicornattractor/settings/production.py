@@ -16,7 +16,7 @@ ALLOWED_HOSTS = [
 ] 
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL')).str.encode('ascii')
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 
 
