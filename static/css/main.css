@@ -6,13 +6,6 @@ main {
     margin-top: 2rem;
 }
 
-footer {
-    margin-top: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-top: 1px solid #ededed;
-    color: #A9A9A9;
-}
 
 .icon-bar {
     background-color: #fff;
@@ -35,4 +28,24 @@ footer {
 
 .p5 {
     padding: 5px;
+}
+
+.inline {
+    display: flex;
+    align-items: baseline;
+}
+
+.upvote-btn {
+    height: 28px;
+    width: 84px;
+    font-size: 10px;
+    padding: 0;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.blockquote-footer {
+    padding-top: 5px;
 }

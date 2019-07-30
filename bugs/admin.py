@@ -10,6 +10,7 @@ class BugAdmin(admin.ModelAdmin):
     
 class BugCommentAdmin(admin.ModelAdmin):
     list_display = ['bug', 'comment', 'creator']
+    list_filter = ('bug',)
 
 admin.site.register(Bug, BugAdmin)
 admin.site.register(BugComment, BugCommentAdmin)

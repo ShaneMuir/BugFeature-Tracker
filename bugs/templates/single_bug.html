@@ -1,7 +1,40 @@
-{% extends 'base.html' %} {% block title %}{{ bug.title }}{% endblock %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block title %}{{ bug.title }}{% endblock %} {% block content %}
+<div class="jumbotron">
+    <h1>{{ bug.title }}</h1><span class="badge badge-danger">{{ bug.status }}</span>
+    <div class="inline">
+        <p class="p5"><span class=""><i class="fa fa-eye p5"></i>{{ bug.views }}<i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></p>
+        <button type="button" class="btn btn-outline-primary upvote-btn">Upvote Bug</button>
+    </div>
+    <p class="lead">{{ bug.description }}</p>
+    <hr class="my-4">
+    <p>Created by: {{bug.creator }} on {{ bug.created_date }}</p>
+</div>
+<div class="row">
+    <div class="col-sm-12">
 
-  {% block heading %}<h1>{{ bug.title }}</h1>{% endblock %} 
-  
-  {% block content %}
-  
-  {% endblock %}
+        <form>
+            <fieldset>
+                <h1>Comments:</h1>
+                {% csrf_token %} {{ bug_comment_form|as_bootstrap }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>
+        
+        {% if comments.count == 0 %}
+        <br> 
+        <h4>There are no comments on this bug yet!</h4>
+        {% else %}
+        
+        {% for comment in comments %}
+        <hr class="my-4">
+        <blockquote class="blockquote text-left">
+            <p class="mb-0">{{ comment.comment|capfirst }}</p>
+            <footer class="blockquote-footer">{{ comment.bug|capfirst }}<cite title="Source Title" class="title"> | {{ comment.creator|capfirst }}</cite></footer>
+        </blockquote>
+        {% endfor %}
+        
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
