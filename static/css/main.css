@@ -23,18 +23,6 @@ main {
     float: right;
 }
 
-
-/* HELPERS */
-
-.p5 {
-    padding: 5px;
-}
-
-.inline {
-    display: flex;
-    align-items: baseline;
-}
-
 .upvote-btn {
     height: 28px;
     width: 84px;
@@ -49,3 +37,20 @@ main {
 .blockquote-footer {
     padding-top: 5px;
 }
+
+
+/* HELPERS */
+
+.p5 {
+    padding: 5px;
+}
+
+.inline {
+    display: flex;
+    align-items: baseline;
+}
+
+strong {
+    font-weight: bold;
+}
+

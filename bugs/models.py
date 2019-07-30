@@ -32,7 +32,7 @@ class upVotes(models.Model):
     """Bug upvotes"""
     upvote_user = models.ForeignKey(User, on_delete=models.CASCADE)
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
-    
+    created_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.upvote_user
@@ -43,6 +43,7 @@ class BugComment(models.Model):
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField(max_length=256, blank=False)
+    created_date = models.DateTimeField(auto_now_add=True)
     
     
     def __str__(self):
