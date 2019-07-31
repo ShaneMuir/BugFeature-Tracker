@@ -67,16 +67,15 @@
         </div>
     </nav>
 
-
-    {% if messages %}
-    {% for message in messages %} 
-    <div class="alert {{ message.tags }}">
-        <div class="messages">
-            {{ message }} 
+    <div class="container-fluid text-center">
+        {% if messages %} {% for message in messages %}
+        <div class="alert {{ message.tags }}">
+            <div class="messages">
+                {{ message }}
+            </div>
         </div>
+        {% endfor %} {% endif %}
     </div>
-    {% endfor %}
-    {% endif %}
     <main class="container">
         {% block heading %} {% endblock %} {% block content %} {% endblock %}
     </main>

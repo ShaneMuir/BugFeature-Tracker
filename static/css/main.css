@@ -54,3 +54,7 @@ strong {
     font-weight: bold;
 }
 
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
