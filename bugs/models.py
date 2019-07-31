@@ -23,6 +23,9 @@ class Bug(models.Model):
     bug_upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     
+    class Meta:
+        ordering = ['-bug_upvotes']
+    
     
     def __str__(self):
         return self.title
