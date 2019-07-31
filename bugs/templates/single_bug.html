@@ -1,10 +1,13 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block title %}{{ bug.title }}{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load bootstrap_tags %}
+{% block title %}{{ bug.title }}{% endblock %}
+
+{% block content %}
 <div class="jumbotron">
     <h1>{{ bug.title }}</h1><span class="badge badge-danger">{{ bug.status }}</span>
     <div class="inline">
         <p class="p5"><span class=""><i class="fa fa-eye p5"></i>{{ bug.views }}<i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></p>
-        {% if user.is_authenicated %}
-        <button type="button" class="btn btn-outline-primary upvote-btn">Upvote Bug</button>
+        {% if user.is_authenticated %}
+        <button type="button" class="btn btn-outline-primary upvote-btn"><a href="{% url 'upvote_bug' bug.id %}">Upvote Bug</a></button>
         {% else %}
         <span>Please login to upvote a bug.</span>
         {% endif %}
