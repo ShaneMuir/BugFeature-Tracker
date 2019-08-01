@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import Bug, BugComment, upVotes
 from .forms import BugCommentForm, BugCreationForm
+from accounts.views import profile
 
 # Create your views here.
 def show_all_bugs(request):
@@ -33,7 +34,8 @@ def single_bug_view(request, pk):
             comment = request.POST.get('comment')
             bug_comment = BugComment.objects.create(bug=bug, creator=request.user, comment=comment)
             bug_comment.save()
-            return redirect(single_bug_view, bug.pk)
+            messages.success(request, 'Thanks {} your comment has posted'.format(request.user), extra_tags="alert-success")
+            return redirect(request.META.get('HTTP_REFERER'))
     else:
         bug_comment_form = BugCommentForm()
         bug.views += 1
@@ -94,3 +96,30 @@ def create_a_bug(request):
     }
         
     return render(request, 'create_bug.html', context)
+    
+
+@login_required
+def edit_a_bug(request, pk):
+    """
+    Route to allow users to edit their bugs
+    """
+    bug = get_object_or_404(Bug, pk=pk)
+    
+    if request.method == "POST":
+        form = BugCreationForm(request.POST, instance=bug)
+        if form.is_valid():
+            bug = form.save(commit=False)
+            bug.creator = request.user
+            bug.save()
+            messages.success(request, "Thanks {0}, {1} has been updated.".format(request.user, bug.title), extra_tags="alert-success")
+            return redirect(reverse('profile'))
+    
+    else:
+        form = BugCreationForm(instance=bug)
+        
+    
+    context = {
+        'form': form,
+    }
+        
+    return render(request, 'edit_bug.html', context)

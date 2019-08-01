@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block title %}Bugs{% endblock %}
 
-<main class="container">
+
   {% block heading %}
   <h1>Bugs</h1>{% endblock %} {% block content %} {% for bug in bugs %}
   <div class="card border-primary mb-3">
@@ -17,4 +17,4 @@
     </div>
   </div>
   {% endfor %} {% endblock %}
-</main>
+

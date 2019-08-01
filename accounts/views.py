@@ -3,6 +3,8 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
+from bugs.models import Bug
+
 
 # Create your views here.
 def register(request):
@@ -72,4 +74,11 @@ def logout(request):
 def profile(request):
     """User profile page"""
     user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {"profile": user})
+    bugs = Bug.objects.filter(creator=user.id)
+    
+    context = {
+        'profile': user,
+        'bugs': bugs,
+    }
+    
+    return render(request, 'profile.html', context)

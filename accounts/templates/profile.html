@@ -1,9 +1,28 @@
-{% extends 'base.html' %} {% block title %}{{ user }}'s Profile {% endblock %}
+{% extends 'base.html' %} {% block title %}{{ user|capfirst }}'s Profile Page {% endblock %}
 
-{% block heading %}<h1>{{ user }}'s Page </h1>{% endblock %}
+{% block heading %}<h1>Hey {{ user }} </h1>{% endblock %}
 
 {% block content %}
-
-<p>{{ profile.email }}</p>
+<p>Here you can view your bugs and features, update and delete them.</p>
+<br>
+ <h4>Your bugs:</h4>
+ {% for bug in bugs %}
+  <div class="card border-primary mb-3">
+    <div class="card-header">{{ bug.status }}<span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
+    <i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></div>
+    <div class="card-body">
+      <h4 class="card-title">{{ bug.title|capfirst }}</h4>
+      <p class="card-text">{{ bug.description|capfirst }}</p>
+      <div class="card-footer text-muted">
+        <a href="{% url 'edit_a_bug' bug.id %}">Edit</a> | Delete | {{ bug.created_date }}
+        <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
+      </div>
+          
+    </div>
+  </div>
+  {% endfor %} 
+  
+ 
+ <h4>Your features:</h4>
 
 {% endblock %}
