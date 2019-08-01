@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from .models import Bug, BugComment, upVotes
-from .forms import BugCommentForm
+from .forms import BugCommentForm, BugCreationForm
 
 # Create your views here.
 def show_all_bugs(request):
@@ -70,4 +70,27 @@ def upvote_bug(request, bug_id):
     else:
         messages.error(request, 'Sorry {0} you have already upvoted {1}!'.format(request.user, bug.title), extra_tags="alert-primary")
         return redirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def create_a_bug(request):
+    """
+    Route to allow users to be able to create a bug
+    via the BugCreationForm
+    """
+    if request.method == "POST":
+        form = BugCreationForm(request.POST)
+        if form.is_valid():
+            bug = form.save(commit=False)
+            bug.creator = request.user
+            bug = form.save()
+            messages.success(request, 'Thank you, your bug has been created!')
+            return redirect(request.META.get('HTTP_REFERER'))
+    else:
+        form = BugCreationForm()
         
+    context = {
+        'form' : form
+    }
+        
+    return render(request, 'create_bug.html', context)
