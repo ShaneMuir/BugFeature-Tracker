@@ -16,7 +16,7 @@
 <div class="row">
   <div class="col-sm-12">
 <div class="card border-primary mb-3">
-  <div class="card-header">{{ bug.status }}<span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
+  <div class="card-header"><span class="badge badge-danger">{{ bug.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
     <i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></div>
   <div class="card-body">
     <h4 class="card-title">{{ bug.title|capfirst }}</h4>
