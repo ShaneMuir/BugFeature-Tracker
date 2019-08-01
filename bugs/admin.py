@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Bug, BugComment
+from .models import Bug, BugComment, upVotes
 
 # Register your models here.
 
@@ -14,3 +14,4 @@ class BugCommentAdmin(admin.ModelAdmin):
 
 admin.site.register(Bug, BugAdmin)
 admin.site.register(BugComment, BugCommentAdmin)
+admin.site.register(upVotes)

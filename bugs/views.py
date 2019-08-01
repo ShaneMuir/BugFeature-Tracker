@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import Bug, BugComment, upVotes
 from .forms import BugCommentForm, BugCreationForm
-from accounts.views import profile
+
 
 # Create your views here.
 def show_all_bugs(request):
@@ -17,7 +17,6 @@ def show_all_bugs(request):
     context = {
         'bugs': bugs
     }
-    
     return render(request, 'bugs.html', context)
     
 
@@ -50,7 +49,6 @@ def single_bug_view(request, pk):
         'bug_comment_form': bug_comment_form,
         'comments': comments,
     }
-        
     return render(request, 'single_bug.html', context)
     
 
@@ -94,7 +92,6 @@ def create_a_bug(request):
     context = {
         'form' : form
     }
-        
     return render(request, 'create_bug.html', context)
     
 
@@ -117,16 +114,19 @@ def edit_a_bug(request, pk):
     else:
         form = BugCreationForm(instance=bug)
         
-    
     context = {
         'form': form,
     }
-        
     return render(request, 'edit_bug.html', context)
     
 @login_required
 def delete_a_bug(request, pk):
+    """
+    Route to allow users to delete their bugs
+    """
+    
     bug = get_object_or_404(Bug, pk=pk)
+    
     if request.method == "POST":
         bug.delete()
         messages.success(request, '{} your bug has been deleted!'.format(request.user), extra_tags="alert-success")
