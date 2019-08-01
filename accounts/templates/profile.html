@@ -1,28 +1,39 @@
-{% extends 'base.html' %} {% block title %}{{ user|capfirst }}'s Profile Page {% endblock %}
-
-{% block heading %}<h1>Hey {{ user }} </h1>{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %}{{ user|capfirst }}'s Profile Page {% endblock %} {% block heading %}
+<h1>Hey {{ user }} </h1>{% endblock %} {% block content %}
 <p>Here you can view your bugs and features, update and delete them.</p>
 <br>
- <h4>Your bugs:</h4>
- {% for bug in bugs %}
-  <div class="card border-primary mb-3">
-    <div class="card-header">{{ bug.status }}<span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
+<h4>Your bugs:</h4>
+{% if bugs %}
+{% for bug in bugs %}
+<div class="card border-primary mb-3">
+  <div class="card-header">{{ bug.status }}<span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
     <i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></div>
-    <div class="card-body">
-      <h4 class="card-title">{{ bug.title|capfirst }}</h4>
-      <p class="card-text">{{ bug.description|capfirst }}</p>
-      <div class="card-footer text-muted">
-        <a href="{% url 'edit_a_bug' bug.id %}">Edit</a> | Delete | {{ bug.created_date }}
-        <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
+  <div class="card-body">
+    <h4 class="card-title">{{ bug.title|capfirst }}</h4>
+    <p class="card-text">{{ bug.description|capfirst }}</p>
+    <div class="card-footer text-muted">
+      {{ bug.creator|capfirst }} | {{ bug.created_date }}
+      <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
+      <div class="inline justify-content-center">
+        <a href="{% url 'edit_a_bug' bug.id %}" class="px-1"><button type="button" class="btn btn-outline-info p5">Edit</button></a>
+        <form method="POST" action="{% url 'delete_a_bug' bug.id %}" id="delete_a_bug" class="px-1">{% csrf_token %}<button type="submit" class="btn btn-outline-warning p5">Delete</button></form>
       </div>
-          
     </div>
-  </div>
-  {% endfor %} 
-  
- 
- <h4>Your features:</h4>
 
+  </div>
+</div>
+{% endfor %}
+{% else %}
+<p>You currently have 0 bugs created, go create some  <a href="{% url 'create_a_bug' %}">here!</a></p>
+{% endif %}
+
+
+<h4>Your features:</h4>
+
+{% endblock %} {% block js %}
+<script>
+  $(document).on('click', '#delete_a_bug', function() {
+    return confirm('Are you sure you want to delete this bug?');
+  })
+</script>
 {% endblock %}

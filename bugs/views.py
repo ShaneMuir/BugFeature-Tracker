@@ -86,8 +86,8 @@ def create_a_bug(request):
             bug = form.save(commit=False)
             bug.creator = request.user
             bug = form.save()
-            messages.success(request, 'Thank you, your bug has been created!')
-            return redirect(request.META.get('HTTP_REFERER'))
+            messages.success(request, 'Thank you {0}, your bug has been created!'.format(request.user), extra_tags="alert-success")
+            return redirect(reverse('show_all_bugs'))
     else:
         form = BugCreationForm()
         
@@ -123,3 +123,14 @@ def edit_a_bug(request, pk):
     }
         
     return render(request, 'edit_bug.html', context)
+    
+@login_required
+def delete_a_bug(request, pk):
+    bug = get_object_or_404(Bug, pk=pk)
+    if request.method == "POST":
+        bug.delete()
+        messages.success(request, '{} your bug has been deleted!'.format(request.user), extra_tags="alert-success")
+        return redirect(request.META.get('HTTP_REFERER'))
+    else:
+        messages.error(request, '{} unfortunatley at this time your bug cannot be deleted.'.format(request.user), extra_tags="alert-primary")
+        return redirect(request.META.get('HTTP_REFERER'))
