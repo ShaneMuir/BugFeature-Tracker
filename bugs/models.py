@@ -37,8 +37,11 @@ class upVotes(models.Model):
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+        verbose_name_plural = "Up votes"
+    
     def __str__(self):
-        return self.upvote_user
+        return self.upvote_user.username
         
 
 class BugComment(models.Model):
