@@ -13,8 +13,8 @@ class Bug(models.Model):
         )
 
 
-    title = models.CharField(max_length=56)
-    description = models.TextField()
+    title = models.CharField(max_length=56, blank=False)
+    description = models.TextField(blank=False)
     status = models.CharField(max_length=20,
                               choices=STATUS_CHOICES,
                               default='To do')
