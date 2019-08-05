@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from .views import (show_all_bugs, single_bug_view, upvote_bug,
                     create_a_bug, edit_a_bug, delete_a_bug)
 

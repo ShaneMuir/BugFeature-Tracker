@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block title %}Features{% endblock %}
+
+
+{% block heading %}
+<div class="row">
+  <div class="col-sm-12">
+    <h1>
+      <span>Features</span>
+   <a href="#"><button type="button" class="btn btn-primary pull-right p5">Add Feature</button></a>
+   </h1>
+  </div>
+</div>
+{% endblock %} 
+
+{% block content %} {% for feature in features %}
+<div class="row">
+  <div class="col-sm-12">
+<div class="card border-primary mb-3">
+  <div class="card-header"><span class="badge badge-danger">{{ feature.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ feature.views }}
+    <i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></div>
+  <div class="card-body">
+    <h4 class="card-title">{{ feature.title|capfirst }}</h4>
+    <p class="card-text">{{ feature.description|capfirst }}</p>
+    <div class="card-footer text-muted">
+      {{ feature.creator|capfirst }} | {{ feature.created_date }}
+      <a href="#" class="card-link">View feature</a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endfor %} {% endblock %}
