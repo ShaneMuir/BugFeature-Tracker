@@ -23,7 +23,7 @@
     <p class="card-text">{{ feature.description|capfirst }}</p>
     <div class="card-footer text-muted">
       {{ feature.creator|capfirst }} | {{ feature.created_date }}
-      <a href="#" class="card-link">View feature</a>
+      <a href="{% url 'single_feature_view' feature.id %}" class="card-link">View feature</a>
     </div>
   </div>
 </div>

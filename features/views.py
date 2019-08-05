@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Feature
 from django.utils import timezone
 
@@ -14,3 +14,22 @@ def show_all_features(request):
         'features': features
     }
     return render(request, 'features.html', context)
+    
+
+
+def single_feature_view(request, pk):
+    """
+    Route to view a single feature on
+    one page
+    """
+    feature = get_object_or_404(Feature, pk=pk)
+    
+    feature.views += 1
+    feature.save()
+    
+    
+            
+    context = {
+        'feature' : feature,
+    }
+    return render(request, 'single_feature.html', context)

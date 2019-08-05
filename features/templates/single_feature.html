@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% load bootstrap_tags %}
+{% block title %}{{ feature.title }}{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>{{ feature.title }}</h1><span class="badge badge-danger">{{ feature.status }}</span>
+    <div class="inline">
+        <p class="p5"><span class=""><i class="fa fa-eye p5"></i>{{ bug.feature }}<i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></p>
+        {% if user.is_authenticated %}
+        <button type="button" class="btn btn-outline-primary upvote-btn"><a href="#">Upvote Feature</a></button>
+        {% else %}
+        <span>Please login to upvote a bug.</span>
+        {% endif %}
+    </div>
+    <p class="lead">{{ feature.description }}</p>
+    <hr class="my-4">
+    <p>Created by: {{feature.creator }} on {{ feature.created_date }}</p>
+</div>
+
+{% endblock %}
