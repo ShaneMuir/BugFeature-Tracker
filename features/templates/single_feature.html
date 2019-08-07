@@ -5,7 +5,7 @@
 <div class="jumbotron">
     <h1>{{ feature.title }}</h1><span class="badge badge-danger">{{ feature.status }}</span>
     <div class="inline">
-        <p class="p5"><span class=""><i class="fa fa-eye p5"></i>{{ bug.feature }}<i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></p>
+        <p class="p5"><span class=""><i class="fa fa-eye p5"></i>{{ feature.views }}<i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></p>
         {% if user.is_authenticated %}
         <button type="button" class="btn btn-outline-primary upvote-btn"><a href="#">Upvote Feature</a></button>
         {% else %}
@@ -16,5 +16,39 @@
     <hr class="my-4">
     <p>Created by: {{feature.creator }} on {{ feature.created_date }}</p>
 </div>
+<div class="row">
+    <div class="col-sm-12">
 
+        <form method="POST">
+            <fieldset>
+                <h1>Comments:</h1>
+                {% csrf_token %} {{ feature_comment_form|as_bootstrap }}
+                {% if user.is_authenticated %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {% else %}
+                <p><strong>Please login to comment on features.</strong></p>
+                <button type="button" class="btn btn-primary disabled">Submit</button>
+                {% endif %}
+                
+            </fieldset>
+        </form>
+        
+        {% if comments.count == 0 %}
+        <br> 
+        <h4>There are no comments on this feature yet!</h4>
+        {% else %}
+        
+        {% for comment in comments %}
+        <hr class="my-4">
+        <blockquote class="blockquote text-left">
+            <p class="mb-0">{{ comment.comment|capfirst }}</p>
+            <footer class="blockquote-footer">{{ comment.bug|capfirst }}<cite title="Source Title" class="title"> | {{ comment.creator|capfirst }}</cite>
+            <datetime> on {{ comment.created_date }}</datetime></footer>
+        </blockquote>
+        {% endfor %}
+        
+        {% endif %}
+
+    </div>
+</div>
 {% endblock %}
