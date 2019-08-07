@@ -24,6 +24,7 @@ class Feature(models.Model):
     paid = models.BooleanField(default=False, blank=False)
     feature_upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
+    price = models.IntegerField(default=5, blank=False)
     
     class Meta:
         ordering = ['-feature_upvotes']
