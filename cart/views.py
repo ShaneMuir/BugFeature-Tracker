@@ -18,3 +18,20 @@ def add_to_cart(request, id):
     request.session['cart'] = cart
     return redirect(request.META.get('HTTP_REFERER'))
     
+
+def increase_cart(request, id):
+    """Increase the quantity of the cart_item"""
+    cart = request.session.get('cart', {})
+    if cart[id]:
+        cart[id] += 1
+    request.session['cart'] = cart
+    return redirect(request.META.get('HTTP_REFERER'))
+    
+
+def decrease_cart(request, id):
+    """Decrease the quantity of the cart_item"""
+    cart = request.session.get('cart', {})
+    if cart[id]:
+        cart[id] -= 1
+    request.session['cart'] = cart
+    return redirect(request.META.get('HTTP_REFERER'))

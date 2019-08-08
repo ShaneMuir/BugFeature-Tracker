@@ -1,14 +1,27 @@
-{% extends 'base.html' %} {% load bootstrap_tags %}
-{% block title %}Your Cart{% endblock %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block title %}Your Cart{% endblock %} {% block heading %}
+<h1>Your Cart:</h1> {% endblock %} {% block content %}
 
-{% block heading %} <h1>Your Cart:</h1> {% endblock %}
 
-{% block content %}
+<div class="row">
+  {% for item in cart_items %}
+  <div class="wrapper p5">
+    <div class="card border-primary mb-3" style="max-width: 20rem;">
+      <div class="card-header">Quantity: {{ item.quantity }}<span class="card-link"><a href="{% url 'decrease_cart' item.id %}"><i class="fa fa-arrow-down"></i></a>
+    <a href="{% url 'increase_cart' item.id %}"><i class="fa fa-arrow-up p5"></a></i></span></div>
+      <div class="card-body">
+        <h4 class="card-title">{{ item.feature }}</h4>
+      </div>
+      <div class="card-footer text-muted">
+        <button type="button" class="btn btn-danger card-link p5">Remove</button>
+      </div>
+    </div>
 
-{% for item in cart_items %} 
 
-{{ item }} 
 
-{% endfor %}
+  </div>
+  {% endfor %}
+</div>
+ {{ total }}
+
 
 {% endblock %}
