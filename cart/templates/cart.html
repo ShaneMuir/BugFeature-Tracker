@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% load bootstrap_tags %}
+{% block title %}Your Cart{% endblock %}
+
+{% block heading %} <h1>Your Cart:</h1> {% endblock %}
+
+{% block content %}
+
+{% for item in cart_items %} 
+
+{{ item }} 
+
+{% endfor %}
+
+{% endblock %}

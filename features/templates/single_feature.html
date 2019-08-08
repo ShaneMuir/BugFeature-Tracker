@@ -7,7 +7,11 @@
     <div class="inline">
         <p class="p5"><span class=""><i class="fa fa-eye p5"></i>{{ feature.views }}<i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></p>
         {% if user.is_authenticated %}
-        <button type="button" class="btn btn-outline-primary upvote-btn"><a href="#">Upvote Feature</a></button>
+        <form method="POST" action="{% url 'add_to_cart' feature.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="btn btn-outline-primary upvote-btn"><a>Upvote Feature</a></button>
+        </form>
         {% else %}
         <span>Please login to upvote a bug.</span>
         {% endif %}

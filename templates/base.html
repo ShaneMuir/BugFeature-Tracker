@@ -10,7 +10,7 @@
     <title>{% block title %} {% endblock %}</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="#">
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.ico' %}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
     <!-- Bootstrap CDN -->
@@ -50,16 +50,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'show_all_features' %}">Features</a>
                 </li>
-                <!--
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-shipping-cart"></i>Cart
-                            {% if product_count > 0 %}
-                            <label class="badge badge-warning">{{ product_count }}</label>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_cart' %}">
+                            Cart
+                            <i class="fa fa-shopping-cart"></i>
+                            {% if feature_count > 0 %}
+                            <label class="badge badge-pill badge-secondary">{{ feature_count }}</label>
                             {% endif %}
                         </a>
                     </li>
-                    -->
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
