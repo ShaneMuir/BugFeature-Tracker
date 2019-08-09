@@ -4,8 +4,9 @@
 
 <div class="row">
   {% for item in cart_items %}
+  <div class="col-md-4">
   <div class="wrapper p5">
-    <div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card border-primary mb-3">
       <div class="card-header">Quantity: {{ item.quantity }}<span class="card-link"><a href="{% url 'decrease_cart' item.id %}"><i class="fa fa-arrow-down"></i></a>
     <a href="{% url 'increase_cart' item.id %}"><i class="fa fa-arrow-up p5"></a></i></span></div>
       <div class="card-body">
@@ -23,6 +24,18 @@
 
 
   </div>
+  </div>
   {% endfor %}
 </div>
-{{ total }} {% endblock %}
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Total: £{{ total }}</h1>
+  </div>
+  <div class="col-sm-6">
+    <button type="button" class="btn btn-success float-right p5">Checkout</button>
+  </div>
+
+</div>
+
+{% endblock %}

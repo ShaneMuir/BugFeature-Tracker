@@ -53,6 +53,3 @@ def remove_from_cart(request, id):
             cart.pop(k)
             request.session['cart'] = cart
             return redirect(request.META.get('HTTP_REFERER'))
-        else:
-            messages.error(request, 'Sorry {0} , something went wrong.'.format(request.user), extra_tags="alert-primary")
-            return redirect(request.META.get('HTTP_REFERER'))
