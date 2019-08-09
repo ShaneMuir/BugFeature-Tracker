@@ -12,7 +12,11 @@
         <h4 class="card-title">{{ item.feature }}</h4>
       </div>
       <div class="card-footer text-muted">
-        <button type="button" class="btn btn-danger card-link p5">Remove</button>
+        <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ item.id }}">
+          <button type="submit" class="btn btn-danger card-link p5">Remove</button>
+        </form>
       </div>
     </div>
 
@@ -21,7 +25,4 @@
   </div>
   {% endfor %}
 </div>
- {{ total }}
-
-
-{% endblock %}
+{{ total }} {% endblock %}

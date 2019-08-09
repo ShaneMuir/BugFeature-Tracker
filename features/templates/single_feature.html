@@ -10,6 +10,7 @@
         <form method="POST" action="{% url 'add_to_cart' feature.id %}">
             {% csrf_token %}
             <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="id" value="{{ feature.id }}">
             <button type="submit" class="btn btn-outline-primary upvote-btn"><a>Upvote Feature</a></button>
         </form>
         {% else %}
