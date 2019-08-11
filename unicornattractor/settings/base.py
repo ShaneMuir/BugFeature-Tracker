@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bugs',
     'features',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +119,7 @@ AUTHENTICATION_BACKENDS = [
     'accounts.backends.EmailAuth',
     ]
 
+# For sending dumy emails for testing
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
@@ -148,10 +150,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-
-
-
-
-

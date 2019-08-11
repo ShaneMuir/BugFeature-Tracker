@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %} {% endblock %}</title>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'img/favicon.ico' %}">
     <!-- Font Awesome -->
@@ -50,15 +52,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'show_all_features' %}">Features</a>
                 </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view_cart' %}">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view_cart' %}">
                             Cart
                             <i class="fa fa-shopping-cart"></i>
                             {% if feature_count > 0 %}
                             <label class="badge badge-pill badge-secondary">{{ feature_count }}</label>
                             {% endif %}
                         </a>
-                    </li>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -84,7 +86,6 @@
 
 
     <!-- Bootstrap CDN -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
