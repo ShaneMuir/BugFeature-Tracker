@@ -1,8 +1,4 @@
-{% extends "base.html" %}
-{% load static from staticfiles %}
-{% load bootstrap_tags %}
-
-{% block head_js %}
+{% extends "base.html" %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block head_js %}
 <script src="https://js.stripe.com/v2/"></script>
 <script>
     //<![CDATA[
@@ -10,45 +6,40 @@
     //]]>
 </script>
 <script src="{% static 'js/stripe.js' %}"></script>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="row row-flex">
     {% for item in cart_items %}
-        <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
-            <div class="panel-body">
-                <div class="product"></div>
-
-                <div class="caption">
-                    <h3>{{ item }}</h3>
-                    <p class="product-description"></p>
-                    <p></p>
-                    <p></p>
+    <div class="col-md-4">
+        <div class="wrapper p5">
+            <div class="card border-primary mb-3">
+                <div class="card-header">Upvote Quantity: {{ item.quantity }}</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ item.feature }}</h4>
                 </div>
             </div>
         </div>
+    </div>
     {% endfor %}
 </div>
-<div class="row">
-    <p>Total</p>
-    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
-</div>
+
 
 <form role="form" method="post" id="payment-form" action="{% url 'checkout_upvote' %}">
-    <legend>Payment Details</legend>
 
     <div id="credit-card-errors" style="display: none;">
         <div id="alert-message block-message error" id="stripe-error-message"></div>
     </div>
 
-    <div class="form-group col-md-6">
-        {{ order_form | as_bootstrap }}
-    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <legend>Personal Details</legend>
+            {{ order_form | as_bootstrap }}
+        </div>
 
-    <div class="form-group col-md-6">
-        {{ payment_form | as_bootstrap }}
+        <div class="form-group col-sm-6">
+            <legend>Payment Details</legend>
+            {{ payment_form | as_bootstrap }}
+        </div>
     </div>
-
     {% csrf_token %}
     <div class="form-group col-md-12">
         <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
