@@ -4,6 +4,15 @@
 
 This is my last milestone project for the Code Institute course.
 
+###### Running coverage
+
+```python
+    then use: coverage run --source=<filename> manage.py test where filename =app name eg accounts
+    coverage report to generate report
+    coverage html
+```
+
+
 ## Brief 
 
 BUILD AN ISSUE TRACKER
