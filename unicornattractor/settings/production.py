@@ -37,3 +37,12 @@ AWS_DEFAULT_ACL = None
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET')
+
+DEFAULT_FROM_EMAIL= os.environ.get('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL= os.environ.get('SERVER_EMAIL')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend' 
+EMAIL_PORT = 26 #587 
+EMAIL_USE_TLS = False
