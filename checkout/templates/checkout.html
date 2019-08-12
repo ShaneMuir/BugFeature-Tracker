@@ -1,4 +1,10 @@
-{% extends "base.html" %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block head_js %}
+{% extends "base.html" %} 
+{% load static from staticfiles %}
+{% load bootstrap_tags %} 
+
+{% block title %}Checkout{% endblock %} 
+
+{% block head_js %}
 <script src="https://js.stripe.com/v2/"></script>
 <script>
     //<![CDATA[
@@ -6,49 +12,43 @@
     //]]>
 </script>
 <script src="{% static 'js/stripe.js' %}"></script>
-{% endblock %} {% block content %}
-<div class="row row-flex">
-    {% if features.count > 1 %}
-    {% for feature in features %}
+{% endblock %} 
+
+{% block heading %}<h1>Checkout:</h1>{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% for item in cart_items %}
     <div class="col-md-4">
         <div class="wrapper p5">
             <div class="card border-primary mb-3">
-                <div class="card-header"><h1>{{ feature.title }}</h1></div>
+                {% if item.feature.paid == False %}
+                <div class="card-header"><span class="badge badge-danger">{{ item.feature.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ item.feature.views }}
+        <i class="fa fa-arrow-up p5"></i>{{ item.feature.feature_upvotes }}</span></div>
+                {% else %}
+                <div class="card-header">Upvote quantity: {{ item.quantity }} </div>
+                {% endif %}
                 <div class="card-body">
-                    <h4 class="card-title">{{ feature.description }}</h4>
+                    <h4 class="card-title">{{ item.feature }}</h4>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ item.feature.creator|capfirst }} | {{ item.feature.created_date }}
                 </div>
             </div>
         </div>
     </div>
     {% endfor %}
-    {% else %}
-     <div class="col-md-4">
-        <div class="wrapper p5">
-            <div class="card border-primary mb-3">
-                <div class="card-header"><h2>{{ features.title }}</h2></div>
-                <div class="card-body">
-                    <p class="card-title">{{ features.description }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    
 </div>
 
-
 <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-
     <div id="credit-card-errors" style="display: none;">
         <div id="alert-message block-message error" id="stripe-error-message"></div>
     </div>
-
     <div class="row">
         <div class="form-group col-sm-6">
             <legend>Personal Details</legend>
             {{ order_form | as_bootstrap }}
         </div>
-
         <div class="form-group col-sm-6">
             <legend>Payment Details</legend>
             {{ payment_form | as_bootstrap }}
