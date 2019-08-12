@@ -12,7 +12,8 @@ from features.models import Feature
 def register(request):
     """Lets users register to site"""
     if request.user.is_authenticated:
-        messages.success(request, "You are already logged in", extra_tags="alert-primary")
+        messages.success(request, "You are already logged in", 
+                         extra_tags="alert-primary")
         return redirect(reverse('index'))
         
     if request.method == "POST":
@@ -26,7 +27,8 @@ def register(request):
             
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully registered!", extra_tags="alert-primary")
+                messages.success(request, "You have successfully registered!", 
+                                 extra_tags="alert-primary")
                 return redirect(reverse('index'))
             else:
                 messages.error(request, 
@@ -42,7 +44,8 @@ def register(request):
 def login(request):
     """Logs the user in"""
     if request.user.is_authenticated:
-        messages.success(request, "You are already logged in!", extra_tags="alert-primary")
+        messages.success(request, "You are already logged in!", 
+                         extra_tags="alert-primary")
         return redirect(reverse('index'))
         
     if request.method == "POST":
@@ -53,7 +56,8 @@ def login(request):
             
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully logged in!", extra_tags="alert-primary")
+                messages.success(request, "You have successfully logged in!", 
+                                 extra_tags="alert-primary")
                 if request.GET.get('next', False):
                     return HttpResponseRedirect(request.GET.get('next'))
                 else:
@@ -71,7 +75,8 @@ def login(request):
 def logout(request):
     """Log out the user"""
     auth.logout(request)
-    messages.success(request, "You have successfully been logged out!", extra_tags="alert-primary")
+    messages.success(request, "You have successfully been logged out!", 
+                     extra_tags="alert-primary")
     return redirect(reverse('index'))
 
 

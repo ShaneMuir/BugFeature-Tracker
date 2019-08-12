@@ -4,13 +4,17 @@ from .forms import UserLoginForm, UserRegistrationForm
 
 
 def setUp(self):
+    """Create a user if needed"""
     user = User.objects.create(username='test')
     user.set_password('test_password')
     user.save()
 
 
 class TestAccountsLoginForm(TestCase):
-
+    """
+    Set of test to ensure our accounts forms are working 
+    as expected
+    """
     def test_login_form_valid_data(self):
         user = {'username': 'test', 'password': 'test_password'}
         form = UserLoginForm(data=user)
@@ -24,7 +28,10 @@ class TestAccountsLoginForm(TestCase):
 
 
 class TestAccountsRegistrationForm(TestCase):
-    
+    """
+    Set of tests to ensure our accounts forms are working 
+    as expected
+    """
     def test_successfull_register(self):
         form = UserRegistrationForm({'username':"test",
                                      "password1": "test_password",
