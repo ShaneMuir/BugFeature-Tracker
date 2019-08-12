@@ -8,22 +8,36 @@
 <script src="{% static 'js/stripe.js' %}"></script>
 {% endblock %} {% block content %}
 <div class="row row-flex">
-    {% for item in cart_items %}
+    {% if features.count > 1 %}
+    {% for feature in features %}
     <div class="col-md-4">
         <div class="wrapper p5">
             <div class="card border-primary mb-3">
-                <div class="card-header">Upvote Quantity: {{ item.quantity }}</div>
+                <div class="card-header"><h1>{{ feature.title }}</h1></div>
                 <div class="card-body">
-                    <h4 class="card-title">{{ item.feature }}</h4>
+                    <h4 class="card-title">{{ feature.description }}</h4>
                 </div>
             </div>
         </div>
     </div>
     {% endfor %}
+    {% else %}
+     <div class="col-md-4">
+        <div class="wrapper p5">
+            <div class="card border-primary mb-3">
+                <div class="card-header"><h2>{{ features.title }}</h2></div>
+                <div class="card-body">
+                    <p class="card-title">{{ features.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
 </div>
 
 
-<form role="form" method="post" id="payment-form" action="{% url 'checkout_upvote' %}">
+<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
 
     <div id="credit-card-errors" style="display: none;">
         <div id="alert-message block-message error" id="stripe-error-message"></div>

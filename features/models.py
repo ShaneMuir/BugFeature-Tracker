@@ -21,10 +21,11 @@ class Feature(models.Model):
                               default='To do')
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
-    paid = models.BooleanField(default=False, blank=False)
+    paid = models.BooleanField(default=False)
+    price = models.IntegerField(default=20, blank=False)
     feature_upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
-    price = models.IntegerField(default=5, blank=False)
+    upvote_price = models.IntegerField(default=5, blank=False)
     
     class Meta:
         ordering = ['-feature_upvotes']

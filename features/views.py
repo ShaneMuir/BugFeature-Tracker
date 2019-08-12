@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Feature, FeatureComment
 from django.utils import timezone
 from django.contrib import messages
-from .forms import FeatureCommentForm
+from .forms import FeatureCommentForm, FeatureCreationForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -53,6 +53,32 @@ def single_feature_view(request, pk):
     
     
     return render(request, 'single_feature.html', context)
+    
+    
+@login_required
+def create_a_feature(request):
+    form = FeatureCreationForm(request.POST)
+    if request.method == "POST":
+        
+        if form.is_valid():
+            feature = form.save(commit=False)
+            feature.creator = request.user
+            feature.save()
+            
+            cart = request.session.get('cart', {})
+            id = feature.id
+            cart[id] = cart.get(id, 1)
+            request.session['cart'] = cart
+            print(cart)
+            return redirect('checkout')
+    else:
+        form = FeatureCreationForm()
+    
+    context = {
+        'form' : form
+    }
+    
+    return render(request, 'create_feature.html', context)
 
 
 @login_required
