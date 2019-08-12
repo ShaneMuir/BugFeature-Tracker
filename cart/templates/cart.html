@@ -1,26 +1,41 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block title %}Your Cart{% endblock %} {% block heading %}
-<h1>Your Cart:</h1> {% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% load bootstrap_tags %} 
 
+{% block title %}Your Cart{% endblock %}
 
+{% block heading %}<h1>Your Cart:</h1>{% endblock %}
+
+{% block content %}
 <div class="row">
   {% for item in cart_items %}
   <div class="col-md-4">
-  <div class="wrapper p5">
-    <div class="card border-primary mb-3">
-      <div class="card-header">Quantity: {{ item.quantity }}<span class="card-link"><a href="{% url 'decrease_cart' item.id %}"><i class="fa fa-arrow-down"></i></a>
-    <a href="{% url 'increase_cart' item.id %}"><i class="fa fa-arrow-up p5"></a></i></span></div>
-      <div class="card-body">
-        <h4 class="card-title">{{ item.feature }}</h4>
-      </div>
-      <div class="card-footer text-muted">
-        <form method="POST" action="{% url 'remove_from_cart' item.id %}">
-          {% csrf_token %}
-          <input type="hidden" name="id" value="{{ item.id }}">
-          <button type="submit" class="btn btn-danger card-link p5">Remove</button>
-        </form>
+    <div class="wrapper p5">
+      <div class="card border-primary mb-3">
+        {% if item.feature.paid == True %}
+        <div class="card-header">Quantity: {{ item.quantity }}<span class="card-link"><a href="{% url 'decrease_cart' item.id %}"><i class="fa fa-arrow-down"></i></a>
+        <a href="{% url 'increase_cart' item.id %}"><i class="fa fa-arrow-up p5"></a></i></span></div>
+        {% else %}
+        <div class="card-header"><span class="badge badge-danger">{{ item.feature.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ item.feature.views }}
+        <i class="fa fa-arrow-up p5"></i>{{ item.feature.feature_upvotes }}</span></div>
+        {% endif %}
+        <div class="card-body">
+          <h4 class="card-title">{{ item.feature }}</h4>
+        </div>
+        {% if item.feature.paid == True %}
+        <div class="card-footer text-muted">
+          <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ item.id }}">
+            <button type="submit" class="btn btn-danger card-link p5">Remove</button>
+          </form>
+        </div>
+        {% else %}
+        <div class="card-footer text-muted">
+          {{ item.feature.creator|capfirst }} | {{ item.feature.created_date }}
+        </div>
+        {% endif %}
       </div>
     </div>
-  </div>
   </div>
   {% endfor %}
 </div>
@@ -32,7 +47,7 @@
   <div class="col-sm-6">
     <button type="button" class="btn btn-success float-right p5"><a href="{% url 'checkout' %}">Checkout</a></button>
   </div>
-
+  
+<!-- end of row -->
 </div>
-
 {% endblock %}

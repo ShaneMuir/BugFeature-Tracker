@@ -12,14 +12,13 @@ def show_all_features(request):
     View to show all our features on
     one page
     """
-    features = Feature.objects.filter(created_date__lte=timezone.now())
+    features = Feature.objects.filter(created_date__lte=timezone.now(), paid=True)
     
     context = {
         'features': features
     }
     return render(request, 'features.html', context)
     
-
 
 def single_feature_view(request, pk):
     """
@@ -69,7 +68,6 @@ def create_a_feature(request):
             id = feature.id
             cart[id] = cart.get(id, 1)
             request.session['cart'] = cart
-            print(cart)
             return redirect('checkout')
     else:
         form = FeatureCreationForm()

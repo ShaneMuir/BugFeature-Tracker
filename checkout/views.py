@@ -19,7 +19,6 @@ def checkout(request):
     for id, quantity in cart.items():
         features = get_object_or_404(Feature, pk=id)
     
-    
     if request.method=="POST":
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
@@ -29,9 +28,7 @@ def checkout(request):
             order.date = timezone.now()
             order.save()
             
-            cart = request.session.get('cart', {})
             total = 0
-        
             for id, quantity in cart.items():
                 total += quantity * features.price
                 order_line_item = OrderLineItem(
@@ -48,7 +45,7 @@ def checkout(request):
                     card = payment_form.cleaned_data['stripe_id'],
                 )
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined!", extra_tags="alert-danger")
+                messages.error(request, "Your card was declined!", extra_tags="alert-primary")
             if customer.paid:
                 for id, quantity in cart.items():
                     if features.paid == False:
@@ -69,5 +66,3 @@ def checkout(request):
         order_form = OrderForm()
                 
     return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'features': features})
-        
-        
