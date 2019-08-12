@@ -11,7 +11,6 @@ import os
 if os.path.exists('env.py'):
     import env
 import dj_database_url
-from django.core.mail import send_mail
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-""" DEBUG comes from .local/.production """
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
