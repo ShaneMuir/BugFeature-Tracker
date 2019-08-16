@@ -55,14 +55,12 @@ class test_views(TestCase):
     def test_user_profile_page(self):
         url = self.client.get('/accounts/profile/')
         self.assertEqual(url.status_code, 302)
-        self.assertRedirects(url, '/accounts/login/?next=/accounts/profile/', status_code=302)
+        self.assertRedirects(url, '/accounts/login/?next=/accounts/profile/',
+                             status_code=302)
         
         
     def test_logging_out(self):
         url = self.client.get('/accounts/logout/')
         self.assertEqual(url.status_code, 302)
-        self.assertRedirects(url, '/accounts/login/?next=/accounts/logout/', status_code=302)
-
-        
-
-
+        self.assertRedirects(url, '/accounts/login/?next=/accounts/logout/',
+                             status_code=302)

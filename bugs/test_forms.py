@@ -28,12 +28,6 @@ class TestBugCreationForm(TestCase):
         
         
     def test_users_can_create_a_bug(self):
-        form = BugCreationForm({'title': 'Bug Title', 'description': 'Bug description'})
+        form = BugCreationForm({'title': 'Bug Title',
+                                'description': 'Bug description'})
         self.assertTrue(form.is_valid())
-        
-
-        
-
-        
-    
-        

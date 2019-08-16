@@ -18,7 +18,7 @@ def show_all_bugs(request):
         'bugs': bugs
     }
     return render(request, 'bugs.html', context)
-    
+
 
 def single_bug_view(request, pk):
     """
@@ -31,10 +31,12 @@ def single_bug_view(request, pk):
         bug_comment_form = BugCommentForm(request.POST or None)
         if bug_comment_form.is_valid():
             comment = request.POST.get('comment')
-            bug_comment = BugComment.objects.create(bug=bug, creator=request.user, comment=comment)
+            bug_comment = BugComment.objects.create(bug=bug, creator=request.user,
+                                                    comment=comment)
             bug_comment.save()
-            messages.success(request, 'Thanks {} your comment has posted'.format(request.user), extra_tags="alert-success")
-            return redirect(request.META.get('HTTP_REFERER'))
+            messages.success(request, 'Thanks {} your comment has posted'
+                             .format(request.user), extra_tags="alert-success")
+            return redirect(reverse('single_bug_view', kwargs={'pk': pk}))
     else:
         bug_comment_form = BugCommentForm()
         bug.views += 1
@@ -68,7 +70,8 @@ def upvote_bug(request, bug_id):
         messages.success(request, "Bug upvoted", extra_tags="alert-success")
         return redirect(request.META.get('HTTP_REFERER'))
     else:
-        messages.error(request, 'Sorry {0} you have already upvoted {1}!'.format(request.user, bug.title), extra_tags="alert-primary")
+        messages.error(request, 'Sorry {0} you have already upvoted {1}!'.format(
+                       request.user, bug.title), extra_tags="alert-primary")
         return redirect(request.META.get('HTTP_REFERER'))
 
 
@@ -84,7 +87,8 @@ def create_a_bug(request):
             bug = form.save(commit=False)
             bug.creator = request.user
             bug = form.save()
-            messages.success(request, 'Thank you {0}, your bug has been created!'.format(request.user), extra_tags="alert-success")
+            messages.success(request, 'Thank you {0}, your bug has been created!'
+                             .format(request.user), extra_tags="alert-success")
             return redirect(reverse('show_all_bugs'))
     else:
         form = BugCreationForm()
@@ -108,7 +112,9 @@ def edit_a_bug(request, pk):
             bug = form.save(commit=False)
             bug.creator = request.user
             bug.save()
-            messages.success(request, "Thanks {0}, {1} has been updated.".format(request.user, bug.title), extra_tags="alert-success")
+            messages.success(request, "Thanks {0}, {1} has been updated."
+                             .format(request.user, bug.title),
+                             extra_tags="alert-success")
             return redirect(reverse('profile'))
     
     else:
@@ -129,8 +135,11 @@ def delete_a_bug(request, pk):
     
     if request.method == "POST":
         bug.delete()
-        messages.success(request, '{} your bug has been deleted!'.format(request.user), extra_tags="alert-success")
+        messages.success(request, '{} your bug has been deleted!'
+                         .format(request.user), extra_tags="alert-success")
         return redirect(request.META.get('HTTP_REFERER'))
     else:
-        messages.error(request, '{} unfortunatley at this time your bug cannot be deleted.'.format(request.user), extra_tags="alert-primary")
+        messages.error(request, 
+                       '{} unfortunatley at this time your bug cannot be deleted.'
+                       .format(request.user), extra_tags="alert-primary")
         return redirect(request.META.get('HTTP_REFERER'))

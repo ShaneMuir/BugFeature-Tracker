@@ -11,7 +11,6 @@ class TestBugViews(TestCase):
     def setUp(self):
         user = User.objects.create_user(username="test", password="testing")
         self.client.login(username="test", password="testing")
-        bug = Bug.objects.create(title="test", description="testing", creator_id=user.id)
         
     def test_all_bugs_page(self):
         response = self.client.get('/bugs/')
@@ -21,7 +20,8 @@ class TestBugViews(TestCase):
         
     def test_single_bug_view(self):
         user = User.objects.get(username="test")
-        bug = Bug(title="Test title", description="Test description", creator_id=user.id)
+        bug = Bug(title="Test title", description="Test description",
+                  creator_id=user.id)
         bug.save()
         response = self.client.get('/bugs/{}'.format(bug.id))
         self.assertEqual(response.status_code, 301)
@@ -30,4 +30,3 @@ class TestBugViews(TestCase):
         response = self.client.get('/bugs/create_bug/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'create_bug.html')
-        

@@ -47,7 +47,8 @@ class TestAccountsRegistrationForm(TestCase):
                                      "password2": "test_password",
                                      "email": "test@test.com"})
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['username'], ['A user with that username already exists.'])
+        self.assertEqual(form.errors['username'],
+                                    ['A user with that usernamealready exists.'])
 
 
     def test_passwords_match(self):

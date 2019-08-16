@@ -32,13 +32,13 @@ def register(request):
                 return redirect(reverse('index'))
             else:
                 messages.error(request, 
-                "Unable to register your account at this time!")
-                
-            
+                               "Unable to register your account at this time!",
+                               extra_tags="alert-danger")
+
     else:
         registration_form = UserRegistrationForm()
-    return render(request, 'register.html',
-    {'registration_form': registration_form})
+    return render(request, 'register.html', {
+                  'registration_form': registration_form})
 
 
 def login(request):
@@ -67,7 +67,6 @@ def login(request):
                 "Your username or password is incorrect!")
     else:
         login_form = UserLoginForm()
-        
     return render(request, 'login.html', {"login_form": login_form})
 
 
@@ -85,7 +84,7 @@ def profile(request):
     """User profile page"""
     user = User.objects.get(email=request.user.email)
     bugs = Bug.objects.filter(creator=user.id)
-    features = Feature.objects.filter(creator=user.id)
+    features = Feature.objects.filter(creator=user.id, paid=True)
     
     context = {
         'profile': user,
