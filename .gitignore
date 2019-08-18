@@ -6,6 +6,7 @@ __pycache__/
 env.py
 sent_emails/
 unicornattractor/settings/local.py
+*.~c9
 
 # C extensions
 *.so
