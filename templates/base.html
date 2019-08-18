@@ -69,7 +69,12 @@
         </div>
     </nav>
 
-
+    <!-- jQuery alert if checkout button clicked
+     with no items in cart -->
+        <div id="alert">
+        </div>
+        
+        
     {% if messages %} {% for message in messages %}
     <div class="container-fluid text-center">
         <div class="alert {{ message.tags }}">

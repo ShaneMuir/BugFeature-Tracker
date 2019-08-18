@@ -5,6 +5,7 @@
 
 {% block heading %}<h1>Your Cart:</h1>{% endblock %}
 
+
 {% block content %}
 <div class="row">
   {% for item in cart_items %}
@@ -46,7 +47,7 @@
   </div>
   {% if total == 0 %}
   <div class="col-sm-6">
-   <button type="button" class="btn btn-success float-right p5" disabled><a href="{% url 'checkout' %}">Checkout</a></button>
+   <button type="button" id="checkout-btn" class="btn btn-success float-right p5" title="" data-toggle="tooltip" data-placement="left" data-original-title="Nothing in cart">Checkout</button>
   </div>
   {% else %}
   <div class="col-sm-6">
@@ -55,3 +56,4 @@
   {% endif %}
 </div>
 {% endblock %}
+
