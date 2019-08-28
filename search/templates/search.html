@@ -27,6 +27,7 @@
 {% endfor %}
 
  {% for feature in features %}
+ {% if feature.paid == True %}
 <div class="row">
   <div class="col-sm-12">
 <div class="card border-primary mb-3">
@@ -43,6 +44,7 @@
 </div>
 </div>
 </div>
+{% endif %}
 {% endfor %}
 
 
