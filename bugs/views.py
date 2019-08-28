@@ -97,7 +97,7 @@ def create_a_bug(request):
         'form' : form
     }
     return render(request, 'create_bug.html', context)
-    
+
 
 @login_required
 def edit_a_bug(request, pk):
@@ -124,13 +124,13 @@ def edit_a_bug(request, pk):
         'form': form,
     }
     return render(request, 'edit_bug.html', context)
-    
+ 
+   
 @login_required
 def delete_a_bug(request, pk):
     """
     Route to allow users to delete their bugs
     """
-    
     bug = get_object_or_404(Bug, pk=pk)
     
     if request.method == "POST":
