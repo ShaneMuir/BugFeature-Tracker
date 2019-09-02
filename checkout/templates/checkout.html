@@ -14,9 +14,11 @@
 <script src="{% static 'js/stripe.js' %}"></script>
 {% endblock %} 
 
-{% block heading %}<h1>Checkout:</h1>{% endblock %}
+
 
 {% block content %}
+<main class="container" id="main">
+    {% block heading %}<h1>Checkout:</h1>{% endblock %}
 <div class="row">
     {% for item in cart_items %}
     <div class="col-md-4">
@@ -59,4 +61,5 @@
         <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
     </div>
 </form>
+</main>
 {% endblock %}

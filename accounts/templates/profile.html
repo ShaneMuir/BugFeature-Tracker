@@ -2,9 +2,12 @@
 
 {% block title %}{{ user|capfirst }}'s Profile Page {% endblock %} 
 
-{% block heading %}<h1>Hey {{ user }}</h1>{% endblock %}
 
 {% block content %}
+<main class="container" id="main">
+{% block heading %}<h1>Hey {{ user }}</h1>{% endblock %}
+
+
 <p>Here you can view your bugs and features, update and delete them.</p>
 <br>
 <h4>Your bugs:</h4>
@@ -59,6 +62,8 @@
 <p>You currently have 0 features created, go create some <a href="#">here!</a></p>
 {% endif %}
 
+
+</main>
 {% endblock %}
 
 

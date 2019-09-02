@@ -2,6 +2,7 @@
 {% block title %}{{ bug.title }}{% endblock %}
 
 {% block content %}
+<main class="container" id="main">
 <div class="jumbotron">
     <h1>{{ bug.title }}</h1><span class="badge badge-danger">{{ bug.status }}</span>
     <div class="inline">
@@ -51,4 +52,5 @@
 
     </div>
 </div>
+</main>
 {% endblock %}

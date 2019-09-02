@@ -2,7 +2,8 @@
 {% block bugs_active%}active{% endblock %}
 {% block title %}Bugs{% endblock %}
 
-
+{% block content %}
+<main class="container" id="main">
 {% block heading %}
 <div class="row">
   <div class="col-sm-12">
@@ -14,7 +15,7 @@
 </div>
 {% endblock %} 
 
-{% block content %} {% for bug in bugs %}
+ {% for bug in bugs %}
 <div class="row">
   <div class="col-sm-12">
 <div class="card border-primary mb-3">
@@ -31,4 +32,7 @@
 </div>
 </div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %} 
+
+</main>
+{% endblock %}

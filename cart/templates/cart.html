@@ -4,10 +4,12 @@
 
 {% block title %}Your Cart{% endblock %}
 
-{% block heading %}<h1>Your Cart:</h1>{% endblock %}
+
 
 
 {% block content %}
+<main class="container" id="main">
+  {% block heading %}<h1>Your Cart:</h1>{% endblock %}
 <div class="row">
   {% for item in cart_items %}
   <div class="col-md-4">
@@ -56,5 +58,6 @@
   </div>
   {% endif %}
 </div>
+</main>
 {% endblock %}
 

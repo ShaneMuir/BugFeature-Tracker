@@ -9,17 +9,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %} {% endblock %}</title>
 
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'img/favicon.ico' %}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css">
+    
+    <!-- Device mockup plugin -->
+    <link rel="stylesheet" href="{% static 'css/device-mockups.css' %}" type="text/css" />
 
     <!-- My custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" /> {% block head_js %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" /> 
+    
+    {% block head_js %} {% endblock %}
 </head>
 
 <body>
@@ -31,7 +41,7 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link {% block home_active %} {% endblock%}" href="{% url 'index' %}">Home</a>
                 </li>
                 {% if user.is_authenticated %}
@@ -74,10 +84,10 @@
 
     <!-- jQuery alert if checkout button clicked
      with no items in cart -->
-        <div id="alert">
-        </div>
-        
-        
+    <div id="alert">
+    </div>
+
+
     {% if messages %} {% for message in messages %}
     <div class="container-fluid text-center">
         <div class="alert {{ message.tags }}">
@@ -87,20 +97,22 @@
         </div>
     </div>
     {% endfor %} {% endif %}
-
-    <main class="container">
-        {% block heading %} {% endblock %}
-        {% block content %} {% endblock %}
-    </main>
+    
+    
+   {% block content %}
+   {% block heading%} {% endblock %}
+   {% endblock %}
+    
+    
 
 
     <!-- Bootstrap CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
+
     <script src="{% static 'js/main.js' %}"></script>
     {% block js %} {% endblock %}
-    
+
 </body>
 
 </html>

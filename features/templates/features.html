@@ -3,7 +3,12 @@
 {% block title %}Features{% endblock %}
 
 
-{% block heading %}
+
+
+{% block content %} 
+<main class="container" id="main">
+  
+  {% block heading %}
 <div class="row">
   <div class="col-sm-12">
     <h1>
@@ -14,7 +19,7 @@
 </div>
 {% endblock %} 
 
-{% block content %} {% for feature in features %}
+{% for feature in features %}
 <div class="row">
   <div class="col-sm-12">
 <div class="card border-primary mb-3">
@@ -31,4 +36,6 @@
 </div>
 </div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %} 
+</main>
+{% endblock %}
