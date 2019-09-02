@@ -31,29 +31,32 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
+                 <li class="nav-item">
+                    <a class="nav-link {% block home_active %} {% endblock%}" href="{% url 'index' %}">Home</a>
+                </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-link {% block profile_active %} {% endblock%}" href="{% url 'profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    <a class="nav-link {% block register_active %} {% endblock%}" href="{% url 'register' %}">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    <a class="nav-link {% block login_active %} {% endblock%}" href="{% url 'login' %}">Log In</a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'show_all_bugs' %}">Bugs</a>
+                    <a class="nav-link {% block bugs_active %} {% endblock%}" href="{% url 'show_all_bugs' %}">Bugs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'show_all_features' %}">Features</a>
+                    <a class="nav-link {% block features_active %} {% endblock%}" href="{% url 'show_all_features' %}">Features</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'view_cart' %}">
+                    <a class="nav-link {% block cart_active %} {% endblock%}" href="{% url 'view_cart' %}">
                             Cart
                             <i class="fa fa-shopping-cart"></i>
                             {% if feature_count > 0 %}
