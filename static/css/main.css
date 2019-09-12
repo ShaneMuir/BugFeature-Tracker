@@ -1,3 +1,5 @@
+/* Globals */
+
 html, body {
     width: 100%;
     height: 100%;
@@ -35,6 +37,30 @@ p {
   margin-bottom: 20px;
 }
 
+/*End of Globals */
+
+/* Helpers */
+
+.p5 {
+    padding: 5px;
+}
+
+.inline {
+    display: flex;
+    align-items: baseline;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/* End of Helpers */
+
 
 header.masthead {
     position: relative;
@@ -46,6 +72,7 @@ header.masthead {
     background: url(../img/bg-pattern.png), -webkit-gradient(linear, right top, left top, from(#49414d), to(#ebdddd));
     background: url(../img/bg-pattern.png), linear-gradient(to left, #49414d, #ebdddd);
 }
+
 header.masthead .header-content {
   max-width: 500px;
   margin-bottom: 100px;
@@ -65,31 +92,6 @@ header.masthead .device-container {
 header.masthead .device-container .screen img {
   border-radius: 3px;
 }
-
-@media (min-width: 992px) {
-  header.masthead {
-    height: 100vh;
-    min-height: 775px;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  header.masthead .header-content {
-    margin-bottom: 0;
-    text-align: left;
-  }
-  header.masthead .header-content h1 {
-    font-size: 50px;
-  }
-  header.masthead .device-container {
-    max-width: 325px;
-  }
-}
-
-
-
-
-
-
 
 
 .alert {
@@ -147,22 +149,28 @@ form button a:hover {
 }
 
 
-/* HELPERS */
+/* Media Queries */
 
-.p5 {
-    padding: 5px;
+@media (min-width: 992px) {
+  header.masthead {
+    height: 100vh;
+    min-height: 775px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  header.masthead .header-content {
+    margin-bottom: 0;
+    text-align: left;
+  }
+  
+  header.masthead .header-content h1 {
+    font-size: 50px;
+  }
+  
+  header.masthead .device-container {
+    max-width: 325px;
+  }
 }
 
-.inline {
-    display: flex;
-    align-items: baseline;
-}
 
-strong {
-    font-weight: bold;
-}
-
-.container-fluid {
-    padding-right: 0;
-    padding-left: 0;
-}
