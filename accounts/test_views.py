@@ -6,8 +6,8 @@ from django.test import Client
 
 
 class test_views(TestCase):
-
-
+    """A suite of tests to test agaist my accounts app views"""
+    
     def setUp(self):
         user = User.objects.create(username='test')
         user.set_password('test_password')
