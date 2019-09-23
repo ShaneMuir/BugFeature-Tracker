@@ -17,6 +17,3 @@ This is my last milestone project for the Code Institute course.
 
 (HTML5 Mockups)[https://github.com/pixelsign/html5-device-mockups]
 I want to credit the guy for the device mockups, very handy and plenty of devices to select from!
-
-(Fullpage.js)[https://github.com/alvarotrigo/fullpage.js] 
-I would like to credit alvarotrigo for the js plugin
