@@ -70,6 +70,10 @@ strong {
   float: right;
 }
 
+.nl-0 {
+  line-height: 0.5;
+}
+
 /* End of Helpers */
 
 /* Home app landing page */
