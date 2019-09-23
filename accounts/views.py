@@ -79,7 +79,7 @@ def logout(request):
     
     
     
-from graphs.graphs import bug_pie_chart, feature_pie_chart
+from graphs.graphs import bug_pie_chart, feature_pie_chart, most_upvoted_bug, most_upvoted_feature
 
 @login_required()
 def profile(request):
@@ -94,6 +94,8 @@ def profile(request):
         'features': features,
         'bug_pie_chart': bug_pie_chart,
         'feature_pie_chart': feature_pie_chart,
+        'most_upvoted_bug': most_upvoted_bug,
+        'most_upvoted_feature': most_upvoted_feature,
     }
     
     return render(request, 'profile.html', context)

@@ -1,83 +1,79 @@
-{% extends 'base.html' %} {% block profile_active%}active{% endblock %}
-
-{% block head %}<script type="text/javascript" src="https://kozea.github.io/pygal.js/latest/pygal-tooltips.min.js"></script>{% endblock %}
-
-{% block title %}{{ user|capfirst }}'s Profile Page {% endblock %} 
-
-
-{% block content %}
+{% extends 'base.html' %} {% block profile_active%}active{% endblock %} {% block head %}
+<script type="text/javascript" src="https://kozea.github.io/pygal.js/latest/pygal-tooltips.min.js"></script>{% endblock %} {% block title %}{{ user|capfirst }}'s Profile Page {% endblock %} {% block content %}
 <main class="container" id="main">
-{% block heading %}<h1>Hey {{ user }}</h1>{% endblock %}
+  {% block heading %}
+  <h1>Hey {{ user|capfirst }}</h1>{% endblock %}
+  <p class="nl-0">Here you can view your bugs and features, update and delete them.</p>
 
 
-<p>Here you can view your bugs and features, update and delete them.</p>
-<br>
-<h4>Your bugs:</h4>
-<hr> 
-{% if bugs %}
-{% for bug in bugs %}
-<div class="card border-primary mb-3">
-  <div class="card-header"><span class="badge badge-danger">{{ bug.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
-    <i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></div>
-  <div class="card-body">
-    <h4 class="card-title">{{ bug.title|capfirst }}</h4>
-    <p class="card-text">{{ bug.description|capfirst }}</p>
-    <div class="card-footer text-muted">
-      {{ bug.creator|capfirst }} | {{ bug.created_date }}
-      <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
-      <div class="inline justify-content-center">
-        <a href="{% url 'edit_a_bug' bug.id %}" class="px-1"><button type="button" class="btn btn-outline-info p5">Edit</button></a>
-        <form method="POST" action="{% url 'delete_a_bug' bug.id %}" id="delete_a_bug" class="px-1">{% csrf_token %}<button type="submit" class="btn btn-outline-warning p5">Delete</button></form>
+  <h4>Your bugs:</h4>
+  {% if bugs %}
+  {% for bug in bugs %}
+  <div class="card border-primary mb-3">
+    <div class="card-header"><span class="badge badge-danger">{{ bug.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
+            <i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></div>
+    <div class="card-body">
+      <h4 class="card-title">{{ bug.title|capfirst }}</h4>
+      <p class="card-text">{{ bug.description|capfirst }}</p>
+      <div class="card-footer text-muted">
+        {{ bug.creator|capfirst }} | {{ bug.created_date }}
+        <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
+        <div class="inline justify-content-center">
+          <a href="{% url 'edit_a_bug' bug.id %}" class="px-1"><button type="button" class="btn btn-outline-info p5">Edit</button></a>
+          <form method="POST" action="{% url 'delete_a_bug' bug.id %}" id="delete_a_bug" class="px-1">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-warning p5">Delet</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-{% endfor %}
-{% else %}
-<p>You currently have 0 bugs created, go create some <a href="{% url 'create_a_bug' %}">here!</a></p>
-{% endif %}
+  {% endfor %}
+  {% else %}
+  <p>You currently have 0 bugs created, go create some <a href="{% url 'create_a_bug' %}">here!</a></p>
+  {% endif %}
 
-
-<h4>Your features:</h4>
-<hr> 
-{% if features %}
-{% for feature in features %}
-<div class="card border-primary mb-3">
-  <div class="card-header"><span class="badge badge-danger">{{ feature.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ feature.views }}
+  <h4>Your features:</h4>
+  {% if features %} 
+  {% for feature in features %}
+  <div class="card border-primary mb-3">
+    <div class="card-header"><span class="badge badge-danger">{{ feature.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ feature.views }}
     <i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></div>
-  <div class="card-body">
-    <h4 class="card-title">{{ feature.title|capfirst }}</h4>
-    <p class="card-text">{{ feature.description|capfirst }}</p>
-    <div class="card-footer text-muted">
-      {{ feature.creator|capfirst }} | {{ feature.created_date }}
-      <a href="{% url 'single_feature_view' feature.id %}" class="card-link">View feature</a>
-      <div class="inline justify-content-center">
-        <a href="#" class="px-1"><button type="button" class="btn btn-outline-info p5">Edit</button></a>
-        <form method="POST" action="{% url 'delete_a_feature' feature.id %}" id="delete_a_bug" class="px-1">{% csrf_token %}<button type="submit" class="btn btn-outline-warning p5">Delete</button></form>
+    <div class="card-body">
+      <h4 class="card-title">{{ feature.title|capfirst }}</h4>
+      <p class="card-text">{{ feature.description|capfirst }}</p>
+      <div class="card-footer text-muted">
+        {{ feature.creator|capfirst }} | {{ feature.created_date }}
+        <a href="{% url 'single_feature_view' feature.id %}" class="card-link">View feature</a>
+        <div class="inline justify-content-center">
+          <a href="#" class="px-1"><button type="button" class="btn btn-outline-info p5">Edit</button></a>
+          <form method="POST" action="{% url 'delete_a_feature' feature.id %}" id="delete_a_bug" class="px-1">{% csrf_token %}<button type="submit" class="btn btn-outline-warning p5">Delete</button></form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-{% endfor %}
-
-{% else %}
-<p>You currently have 0 features created, go create some <a href="#">here!</a></p>
-{% endif %}
+  {% endfor %} {% else %}
+  <p>You currently have 0 features created, go create some <a href="#">here!</a></p>
+  {% endif %}
 
 
-<section class="container">
-  <div class="row">
-    <div class="col-6">
-      {{ bug_pie_chart | safe }}
+  <section class="container">
+    <div class="row">
+      <div class="col-6">
+        {{ bug_pie_chart | safe }}
+      </div>
+      <div class="col-6">
+        {{ feature_pie_chart | safe }}
+      </div>
+      <div class="col-6">
+        {{ most_upvoted_bug | safe }}
+      </div>
+      <div class="col-6">
+        {{ most_upvoted_feature | safe }}
+      </div>
     </div>
-    <div class="col-6">
-      {{ feature_pie_chart | safe }}
-    </div>
-    <div class="col-6"></div>
-    <div class="col-6"></div>
-  </div>
-  
-</section>
+
+  </section>
 
 
 
@@ -102,10 +98,7 @@
 
 
 
-{% endblock %}
-
-
-{% block js %}
+{% endblock %} {% block js %}
 <script>
   $(document).on('click', '#delete_a_bug', function() {
     return confirm('Are you sure you want to delete this bug?');
