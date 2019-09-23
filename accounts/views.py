@@ -79,7 +79,7 @@ def logout(request):
     
     
     
-from graphs.graphs import chart
+from graphs.graphs import bug_pie_chart, feature_pie_chart
 
 @login_required()
 def profile(request):
@@ -92,7 +92,8 @@ def profile(request):
         'profile': user,
         'bugs': bugs,
         'features': features,
-        'graph': chart,
+        'bug_pie_chart': bug_pie_chart,
+        'feature_pie_chart': feature_pie_chart,
     }
     
     return render(request, 'profile.html', context)
