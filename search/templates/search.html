@@ -3,9 +3,9 @@
 
 {% block title %}Search{% endblock %}
 
-{% block heading %}<h1>Search</h1>{% endblock %}
-
 {% block content %}
+<main id="main" class="container">
+{% block heading %}<h1>Search</h1>{% endblock %}
 
 {% for bug in bugs %}
 <div class="row">
@@ -26,27 +26,25 @@
 </div>
 {% endfor %}
 
- {% for feature in features %}
- {% if feature.paid == True %}
+{% for feature in features %}
 <div class="row">
   <div class="col-sm-12">
-<div class="card border-primary mb-3">
-  <div class="card-header"><span class="badge badge-danger">{{ feature.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ feature.views }}
-    <i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></div>
-  <div class="card-body">
-    <h4 class="card-title">{{ feature.title|capfirst }}</h4>
-    <p class="card-text">{{ feature.description|capfirst }}</p>
-    <div class="card-footer text-muted">
-      {{ feature.creator|capfirst }} | {{ feature.created_date }}
-      <a href="{% url 'single_feature_view' feature.id %}" class="card-link">View feature</a>
+    <div class="card border-primary mb-3">
+      <div class="card-header"><span class="badge badge-danger">{{ feature.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ feature.views }}
+        <i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></div>
+      <div class="card-body">
+        <h4 class="card-title">{{ feature.title|capfirst }}</h4>
+        <p class="card-text">{{ feature.description|capfirst }}</p>
+      <div class="card-footer text-muted">
+        {{ feature.creator|capfirst }} | {{ feature.created_date }}
+          <a href="{% url 'single_feature_view' feature.id %}" class="card-link">View feature</a>
+      </div>
     </div>
-  </div>
 </div>
 </div>
 </div>
-{% endif %}
 {% endfor %}
 
-
+</main>
 
 {% endblock %}
