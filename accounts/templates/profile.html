@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% block profile_active%}active{% endblock %}
 
+{% block head %}<script type="text/javascript" src="https://kozea.github.io/pygal.js/latest/pygal-tooltips.min.js"></script>{% endblock %}
+
 {% block title %}{{ user|capfirst }}'s Profile Page {% endblock %} 
 
 
@@ -63,7 +65,41 @@
 {% endif %}
 
 
+<section class="container">
+  <div class="row">
+    <div class="col-6">
+      {{ graph | safe }}
+    </div>
+    <div class="col-6"></div>
+    <div class="col-6"></div>
+    <div class="col-6"></div>
+  </div>
+  
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </main>
+
+
+
+
+
+
+
+
+
 {% endblock %}
 
 

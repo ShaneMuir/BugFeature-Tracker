@@ -7,7 +7,6 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 from bugs.models import Bug
 from features.models import Feature
 
-
 # Create your views here.
 def register(request):
     """Lets users register to site"""
@@ -77,7 +76,10 @@ def logout(request):
     messages.success(request, "You have successfully been logged out!", 
                      extra_tags="alert-primary")
     return redirect(reverse('index'))
-
+    
+    
+    
+from graphs.graphs import chart
 
 @login_required()
 def profile(request):
@@ -90,6 +92,7 @@ def profile(request):
         'profile': user,
         'bugs': bugs,
         'features': features,
+        'graph': chart,
     }
     
     return render(request, 'profile.html', context)
