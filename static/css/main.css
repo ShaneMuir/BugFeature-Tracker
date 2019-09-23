@@ -66,6 +66,10 @@ strong {
   padding-left: 0;
 }
 
+.pull-right {
+  float: right;
+}
+
 /* End of Helpers */
 
 /* Home app landing page */
