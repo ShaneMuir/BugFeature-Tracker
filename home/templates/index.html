@@ -1,33 +1,83 @@
-{% extends 'base.html' %}
-{% block home_active %}active{% endblock %}
-
-{% block title%}Home Page{% endblock %}
-
-{% block head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.7/fullpage.css" type="text/css" />
-{% endblock %}
-
-
-{% block content %}
-<header class="masthead">
-        <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-lg-7 my-auto">
-          <div class="header-content mx-auto">
-            <h1 class="mb-5">Unicorn Attractor is an app so that all Wuzzat users can log bugs or request new features!</h1>
-            <a href="#download" class="btn btn-outline-primary js-scroll-trigger">Start Now for Free!</a>
+{% extends 'base.html' %} {% block home_active %}active{% endblock %} {% block title%}Home Page{% endblock %} {% block head %} {% endblock %} {% block content %}
+<header class="masthead section">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-7 my-auto">
+        <div class="header-content mx-auto">
+          <h1 class="mb-5">Unicorn Attractor is an app so that all Wuzzat users can log bugs or request new features!</h1>
+          {% if user.is_authenticated %}
+          <a href="{% url 'profile' %}" class="btn btn-outline-primary">Go to your profile!</a>
+          {% else %}
+          <a href="{% url 'register' %}" class="btn btn-outline-primary">Register now for free!</a>
+          {% endif %}    
+        </div>
+      </div>
+      <div class="col-lg-5 my-auto">
+        <div class="device-container">
+          <div class="device-mockup iphone6_plus portrait white">
+            <div class="device">
+              <div class="screen">
+                <img src="../../static/img/demo-screen-1.jpg" class="img-fluid" alt="">
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-5 my-auto">
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <section class="features">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h2>Unicorn Attractor</h2>
+        <p class="text-muted">Making wuzzat a better place for everybody!</p>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 my-auto">
           <div class="device-container">
             <div class="device-mockup iphone6_plus portrait white">
               <div class="device">
                 <div class="screen">
-                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
                   <img src="../../static/img/demo-screen-1.jpg" class="img-fluid" alt="">
                 </div>
-                <div class="button">
-                  <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 my-auto">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="fa fa-bug text-primary"></i>
+                  <h3>Log Bugs</h3>
+                  <p class="text-muted">If you find any bugs on wuzzat, use this site to log them so our team can work on fixes.</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="fa fa-money-check-alt text-primary"></i>
+                  <h3>Buy new Features</h3>
+                  <p class="text-muted">You can request new features to wuzzat, if there is enough support our team will work on implementing them.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="fa fa-gift text-primary"></i>
+                  <h3>Free to Use</h3>
+                  <p class="text-muted">As always, just like wuzzat our Unicorn Attractor is free.</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="fa fa-lock-open text-primary"></i>
+                  <h3>Open Source</h3>
+                  <p class="text-muted">This project is released under MIT and fully on github, get involved and let make the worlda better place.</p>
                 </div>
               </div>
             </div>
@@ -35,5 +85,21 @@
         </div>
       </div>
     </div>
-</header>
+  </section>
+
+ <section class="landing">
+    <div class="landing-content">
+      <div class="container">
+        <h2>Stop waiting.<br>Start building.</h2>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; Unicorn Attractor 2019. All Rights Reserved.</p>
+  </div>
+</footer>
 {% endblock %}
+
