@@ -1,38 +1,43 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block bugs_active%}active{% endblock %}
 {% block title %}Bugs{% endblock %}
 
 {% block content %}
 <main class="container" id="main">
-{% block heading %}
-<div class="row">
-  <div class="col-sm-12">
-    <h1>
-      <span>Bugs</span>
-   <a href="{% url 'create_a_bug' %}"><button type="button" class="btn btn-primary pull-right p5">Add Bug</button></a>
-   </h1>
-  </div>
-</div>
-{% endblock %} 
-
- {% for bug in bugs %}
-<div class="row">
-  <div class="col-sm-12">
-<div class="card border-primary mb-3">
-  <div class="card-header"><span class="badge badge-danger">{{ bug.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
-    <i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></div>
-  <div class="card-body">
-    <h4 class="card-title">{{ bug.title|capfirst }}</h4>
-    <p class="card-text">{{ bug.description|capfirst }}</p>
-    <div class="card-footer text-muted">
-      {{ bug.creator|capfirst }} | {{ bug.created_date }}
-      <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
+  {% block heading %}
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>
+        <span>Bugs</span>
+        <a href="{% url 'create_a_bug' %}"><button type="button" class="btn btn-primary pull-right p5">Add Bug</button></a>
+      </h1>
     </div>
   </div>
-</div>
-</div>
-</div>
-{% endfor %} 
+  {% endblock %}
+  
+  {% for bug in bugs %}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card border-primary mb-3">
+        <div class="card-header">
+          {% if bug.status == "To do" %}
+          <span class="badge badge-danger">{{ bug.status }}</span> {% elif bug.status == "In progress" %}
+          <span class="badge badge-warning">{{ bug.status }}</span> {% else %}
+          <span class="badge badge-success">{{ bug.status }}</span> {% endif %}
+          <span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
+          <i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></div>
+        <div class="card-body">
+          <h4 class="card-title">{{ bug.title|capfirst }}</h4>
+          <p class="card-text">{{ bug.description|capfirst }}</p>
+          <div class="card-footer text-muted">
+            {{ bug.creator|capfirst }} | {{ bug.created_date }}
+            <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 
 </main>
 {% endblock %}

@@ -74,6 +74,17 @@ strong {
   line-height: 0.5;
 }
 
+.left-hr {
+  max-width: 100px;
+  margin: 25px 0;
+  border-width: 1px;
+  border-color: rgba(34, 34, 34, 0.4);
+}
+
+.long-hr {
+  max-width: 100% !important;
+}
+
 /* End of Helpers */
 
 /* Home app landing page */
