@@ -1,5 +1,16 @@
-{% extends 'base.html' %} {% block profile_active%}active{% endblock %} {% block head %}
-<script type="text/javascript" src="https://kozea.github.io/pygal.js/latest/pygal-tooltips.min.js"></script>{% endblock %} {% block title %}{{ user|capfirst }}'s Profile Page {% endblock %} {% block content %}
+{% extends 'base.html' %} 
+
+<!-- This make the nav-item active -->
+{% block profile_active%}active{% endblock %}
+
+{% block head %}
+<!-- Script to enable pygal to be interactive -->
+<script type="text/javascript" src="https://kozea.github.io/pygal.js/latest/pygal-tooltips.min.js"></script>
+{% endblock %}
+
+{% block title %}{{ user|capfirst }}'s Profile Page{% endblock %} 
+
+{% block content %}
 <main class="container" id="main">
   <div class="row">
     <div class="col-12">
@@ -9,7 +20,8 @@
       <p class="nl-0">Here you can view your bugs and features, update and delete them.</p>
     </div>
   </div>
-
+  
+  <!-- User specific bugs -->
   <h4 class="mt-3">Your bugs:</h4>
   {% if bugs %} {% for bug in bugs %}
   <div class="row">
@@ -38,7 +50,8 @@
   {% endfor %} {% else %}
   <p>You currently have 0 bugs created, go create some <a href="{% url 'create_a_bug' %}">here!</a></p>
   {% endif %}
-
+  
+  <!-- User specific features --> 
   <h4 class="mt-3">Your features:</h4>
   {% if features %} {% for feature in features %}
   <div class="row">
@@ -65,7 +78,7 @@
   <p>You currently have 0 features created, go create some <a href="{% url 'create_a_feature' %}">here!</a></p>
   {% endif %}
 
-
+  <!-- Site graphs from pygal -->
   <section class="container pt-5">
     <div class="row">
       <div class="col-12">
@@ -84,7 +97,6 @@
         {{ most_upvoted_feature | safe }}
       </div>
     </div>
-
   </section>
 
 
