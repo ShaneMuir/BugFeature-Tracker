@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block home_active %}active{% endblock %}
 {% block title%}Home Page{% endblock %}
 
@@ -22,7 +23,7 @@
           <div class="device-mockup iphone6_plus portrait white">
             <div class="device">
               <div class="screen">
-                <img src="../../static/img/demo-screen-1.jpg" class="img-fluid" alt="">
+                <img src="{% static 'img/demo-screen-1.jpg' %}" class="img-fluid" alt="">
               </div>
             </div>
           </div>
@@ -46,7 +47,7 @@
             <div class="device-mockup iphone6_plus portrait white">
               <div class="device">
                 <div class="screen">
-                  <img src="../../static/img/demo-screen-1.jpg" class="img-fluid" alt="">
+                  <img src="{% static 'img/demo-screen-1.jpg' %}" class="img-fluid" alt="">
                 </div>
               </div>
             </div>
