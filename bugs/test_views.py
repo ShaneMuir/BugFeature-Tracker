@@ -1,7 +1,6 @@
 from django.test import TestCase, Client
 from django.contrib import auth
 from django.contrib.auth.models import User
-from django.test import Client
 from .models import Bug
 from django.shortcuts import get_object_or_404
 
