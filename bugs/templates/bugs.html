@@ -30,7 +30,9 @@
           <h4 class="card-title">{{ bug.title|capfirst }}</h4>
           <p class="card-text">{{ bug.description|capfirst }}</p>
           <div class="card-footer text-muted">
+            <span class="margin-b-0">
             {{ bug.creator|capfirst }} | {{ bug.created_date }}
+            </span>
             <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
           </div>
         </div>
