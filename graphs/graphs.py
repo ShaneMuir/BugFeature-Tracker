@@ -2,15 +2,19 @@ from bugs.models import Bug
 from features.models import Feature
 
 import pygal
-from pygal.style import Style, LightenStyle
+from pygal.style import Style, LightenStyle, DefaultStyle
 
 dark_lighten_style = LightenStyle('#A9A9A9',
-                                   title_font_size =60,
-                                   tooltip_font_size = 30,
-                                   background = 'transparent',
-                                   font_family = 'Muli',
-                                   legend_font_size	 = 18,
+              background='transparent',
+              opacity='.6',
+              opacity_hover='.9',
+              transition='400ms ease-in',
+              title_font_size = 40,
+              tooltip_font_size = 26,
+              font_family = 'Muli',
+              legend_font_size	 = 18,
                                    )
+
 
 def bug_pie_chart():
     """
@@ -79,6 +83,7 @@ def most_upvoted_bug():
         )
     bar_chart.title = "Most upvoted Bug"
     
+    
     for bug in bugs:
         bar_chart.add(bug.title, bug.bug_upvotes)
     most_upvoted_bug = bar_chart.render()
@@ -97,7 +102,7 @@ def most_upvoted_feature():
         print_values=False,
         human_readable=True,
         show_legend=True,
-        fill=True,
+        fill=False,
         style = dark_lighten_style,
         )
     bar_chart.title = "Most upvoted Bug"
