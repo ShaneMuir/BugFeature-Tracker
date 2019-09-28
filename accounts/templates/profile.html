@@ -55,7 +55,46 @@
       </div>
     </div>
   </div>
-  {% endfor %} {% else %}
+  {% endfor %} 
+  
+    <div class="container">
+    {% if bugs.has_other_pages %}
+    <ul class="pagination pagination-sm">
+      {% if bugs.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ bugs.previous_page_number }}">&laquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&laquo;</a>
+      </li>
+      {% endif %} 
+      {% for i in bugs.paginator.page_range %}
+      {% if bugs.number == i %}
+      <li class="page-item active">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% if bugs.has_next %}
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ bugs.next_page_number }}">&raquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+  
+  {% else %}
   <p>You currently have 0 bugs created, go create some <a href="{% url 'create_a_bug' %}">here!</a></p>
   {% endif %}
   
@@ -92,7 +131,48 @@
       </div>
     </div>
   </div>
-  {% endfor %} {% else %}
+  {% endfor %} 
+  
+    
+  
+  <div class="container">
+    {% if features.has_other_pages %}
+    <ul class="pagination pagination-sm">
+      {% if features.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ features.previous_page_number }}">&laquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&laquo;</a>
+      </li>
+      {% endif %} 
+      {% for i in features.paginator.page_range %}
+      {% if features.number == i %}
+      <li class="page-item active">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% if features.has_next %}
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ features.next_page_number }}">&raquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+  
+  {% else %}
   <p>You currently have 0 features created, go create some <a href="{% url 'create_a_feature' %}">here!</a></p>
   {% endif %}
 
