@@ -27,7 +27,13 @@
   <div class="row">
     <div class="col-12">
       <div class="card border-primary mb-3">
-        <div class="card-header"><span class="badge badge-danger">{{ bug.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
+           <div class="card-header">
+        {% if bug.status == "To do" %}
+          <span class="badge badge-danger">{{ bug.status }}</span> {% elif bug.status == "In progress" %}
+          <span class="badge badge-warning">{{ bug.status }}</span> {% else %}
+          <span class="badge badge-success">{{ bug.status }}</span> 
+          {% endif %}
+        <span class="card-link"><i class="fa fa-eye p5"></i>{{ bug.views }}
       <i class="fa fa-arrow-up p5"></i>{{ bug.bug_upvotes }}</span></div>
         <div class="card-body">
           <h4 class="card-title">{{ bug.title|capfirst }}</h4>
@@ -57,7 +63,15 @@
   <div class="row">
     <div class="col-12">
       <div class="card border-primary mb-3">
-        <div class="card-header"><span class="badge badge-danger">{{ feature.status }}</span><span class="card-link"><i class="fa fa-eye p5"></i>{{ feature.views }}
+        <div class="card-header">
+                   {% if feature.status == "To do" %}
+          <span class="badge badge-danger">{{ feature.status }}</span>
+          {% elif feature.status == "In progress" %}
+          <span class="badge badge-warning">{{ feature.status }}</span>
+          {% else %}
+          <span class="badge badge-success">{{ feature.status }}</span>
+          {% endif %}
+        <span class="card-link"><i class="fa fa-eye p5"></i>{{ feature.views }}
     <i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></div>
         <div class="card-body">
           <h4 class="card-title">{{ feature.title|capfirst }}</h4>
