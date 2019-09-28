@@ -2,6 +2,7 @@ from django.test import TestCase
 from .forms import BugCommentForm, BugCreationForm
 
 class TestBugCommentForm(TestCase):
+    """Set of tests for our bug comment form"""
     
     def test_users_can_comment(self):
         form = BugCommentForm({'comment': 'Test comment'})
@@ -16,7 +17,7 @@ class TestBugCommentForm(TestCase):
         
 
 class TestBugCreationForm(TestCase):
-    
+    """A set of tests agaist our bug creation form"""
     def test_required_fields(self):
         form = BugCreationForm({'title':'', 'description': 'Bug description'})
         self.assertFalse(form.is_valid())
