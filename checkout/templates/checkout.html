@@ -18,7 +18,7 @@
 
 {% block content %}
 <main class="container" id="main">
-    {% block heading %}<h1>Checkout:</h1>{% endblock %}
+    {% block heading %}<h1>Checkout: £{{ total }}</h1>{% endblock %}
 <div class="row">
     {% for item in cart_items %}
     <div class="col-md-4">
