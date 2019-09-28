@@ -56,6 +56,9 @@ def single_feature_view(request, pk):
     
 @login_required
 def create_a_feature(request):
+    """
+    Route to allow our users to create a feature
+    """
     form = FeatureCreationForm(request.POST)
     if request.method == "POST":
         
