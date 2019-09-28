@@ -39,9 +39,11 @@
           <h4 class="card-title">{{ bug.title|capfirst }}</h4>
           <p class="card-text">{{ bug.description|capfirst }}</p>
           <div class="card-footer text-muted">
+            <span>
             {{ bug.creator|capfirst }} | {{ bug.created_date }}
+            </span>
             <a href="{% url 'single_bug_view' bug.id %}" class="card-link">View bug</a>
-            <div class="inline justify-content-center">
+            <div class="inline justify-content-center mt-2">
               <a href="{% url 'edit_a_bug' bug.id %}" class="px-1"><button type="button" class="btn btn-outline-info p5">Edit</button></a>
               <form method="POST" action="{% url 'delete_a_bug' bug.id %}" id="delete_a_bug" class="px-1">
                 {% csrf_token %}
@@ -77,9 +79,11 @@
           <h4 class="card-title">{{ feature.title|capfirst }}</h4>
           <p class="card-text">{{ feature.description|capfirst }}</p>
           <div class="card-footer text-muted">
+            <span>
             {{ feature.creator|capfirst }} | {{ feature.created_date }}
+            </span>
             <a href="{% url 'single_feature_view' feature.id %}" class="card-link">View feature</a>
-            <div class="inline justify-content-center">
+            <div class="inline justify-content-center mt-2">
               <a href="#" class="px-1"><button type="button" class="btn btn-outline-info p5">Edit</button></a>
               <form method="POST" action="{% url 'delete_a_feature' feature.id %}" id="delete_a_bug" class="px-1">{% csrf_token %}<button type="submit" class="btn btn-outline-warning p5">Delete</button></form>
             </div>
@@ -98,16 +102,16 @@
       <div class="col-12">
         <h1 class="text-center">Tracker Statistics</h1>
       </div>
-      <div class="col-6">
+      <div class="col-sm-12 col-md-6">
         {{ bug_pie_chart | safe }}
       </div>
-      <div class="col-6">
+      <div class="col-sm-12 col-md-6">
         {{ feature_pie_chart | safe }}
       </div>
-      <div class="col-6">
+      <div class="col-sm-12 col-md-6">
         {{ most_upvoted_bug | safe }}
       </div>
-      <div class="col-6">
+      <div class="col-sm-12 col-md-6">
         {{ most_upvoted_feature | safe }}
       </div>
     </div>
