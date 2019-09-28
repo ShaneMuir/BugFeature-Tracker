@@ -35,7 +35,7 @@ def single_bug_view(request, pk):
                                                     comment=comment)
             bug_comment.save()
             messages.success(request, 'Thanks {} your comment has posted'
-                             .format(request.user), extra_tags="alert-success")
+                             .format(request.user), extra_tags="alert-primary")
             return redirect(reverse('single_bug_view', kwargs={'pk': pk}))
     else:
         bug_comment_form = BugCommentForm()
@@ -67,7 +67,7 @@ def upvote_bug(request, bug_id):
         upvote.save()
         bug.bug_upvotes += 1
         bug.save()
-        messages.success(request, "Bug upvoted", extra_tags="alert-success")
+        messages.success(request, "Bug upvoted", extra_tags="alert-primary")
         return redirect(request.META.get('HTTP_REFERER'))
     else:
         messages.error(request, 'Sorry {0} you have already upvoted {1}!'.format(
@@ -88,7 +88,7 @@ def create_a_bug(request):
             bug.creator = request.user
             bug = form.save()
             messages.success(request, 'Thank you {0}, your bug has been created!'
-                             .format(request.user), extra_tags="alert-success")
+                             .format(request.user), extra_tags="alert-primary")
             return redirect(reverse('show_all_bugs'))
     else:
         form = BugCreationForm()
@@ -114,7 +114,7 @@ def edit_a_bug(request, pk):
             bug.save()
             messages.success(request, "Thanks {0}, {1} has been updated."
                              .format(request.user, bug.title),
-                             extra_tags="alert-success")
+                             extra_tags="alert-primary")
             return redirect(reverse('profile'))
     
     else:
@@ -136,7 +136,7 @@ def delete_a_bug(request, pk):
     if request.method == "POST":
         bug.delete()
         messages.success(request, '{} your bug has been deleted!'
-                         .format(request.user), extra_tags="alert-success")
+                         .format(request.user), extra_tags="alert-primary")
         return redirect(request.META.get('HTTP_REFERER'))
     else:
         messages.error(request, 

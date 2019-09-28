@@ -53,7 +53,7 @@ def checkout(request):
                     elif features.paid == True:
                         features.feature_upvotes += quantity
                     features.save()
-                messages.error(request, "You have successfully paid", extra_tags="alert-success")
+                messages.error(request, "You have successfully paid", extra_tags="alert-primary")
                 request.session['cart'] = {}
                 return redirect(reverse('show_all_features'))
             else:

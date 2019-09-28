@@ -32,7 +32,7 @@ def register(request):
             else:
                 messages.error(request, 
                                "Unable to register your account at this time!",
-                               extra_tags="alert-danger")
+                               extra_tags="alert-primary")
 
     else:
         registration_form = UserRegistrationForm()
