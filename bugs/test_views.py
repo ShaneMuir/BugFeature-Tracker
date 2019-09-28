@@ -6,7 +6,10 @@ from django.shortcuts import get_object_or_404
 
 
 class TestBugViews(TestCase):
-    
+    """
+    Set of test to ensure our views are working
+    as expected
+    """
     def setUp(self):
         user = User.objects.create_user(username="test", password="testing")
         self.client.login(username="test", password="testing")
