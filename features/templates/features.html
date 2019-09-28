@@ -33,7 +33,9 @@
           <h4 class="card-title">{{ feature.title|capfirst }}</h4>
           <p class="card-text">{{ feature.description|capfirst }}</p>
           <div class="card-footer text-muted">
+            <span>
             {{ feature.creator|capfirst }} | {{ feature.created_date }}
+            </span>
             <a href="{% url 'single_feature_view' feature.id %}" class="card-link">View feature</a>
           </div>
         </div>
