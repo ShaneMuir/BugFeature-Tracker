@@ -43,5 +43,46 @@
     </div>
   </div>
   {% endfor %}
+  
+  
+  
+  <div class="container">
+    {% if features.has_other_pages %}
+    <ul class="pagination">
+      {% if features.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ features.previous_page_number }}">&laquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&laquo;</a>
+      </li>
+      {% endif %} 
+      {% for i in features.paginator.page_range %}
+      {% if features.number == i %}
+      <li class="page-item active">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% if features.has_next %}
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ features.next_page_number }}">&raquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+  
+  
 </main>
 {% endblock %}

@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib import messages
 from .forms import FeatureCommentForm, FeatureCreationForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -12,7 +13,17 @@ def show_all_features(request):
     View to show all our features on
     one page
     """
-    features = Feature.objects.filter(created_date__lte=timezone.now(), paid=True)
+    feature_list = Feature.objects.filter(created_date__lte=timezone.now(), paid=True)
+    page = request.GET.get('page', 1)
+    
+    paginator = Paginator(feature_list, 5)
+    
+    try:
+        features = paginator.page(page)
+    except PageNotAnIntger:
+        features = paginator.page(1)
+    except EmptyPage:
+        features = paginator.page(paginator.num_pages)
     
     context = {
         'features': features
