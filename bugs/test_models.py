@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Bug, BugComment
+from .models import Bug
 
 
 class BugEntryTest(TestCase):
