@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import Bug, BugComment, upVotes
 from .forms import BugCommentForm, BugCreationForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -12,7 +13,17 @@ def show_all_bugs(request):
     View to show all our bugs on
     one page
     """
-    bugs = Bug.objects.filter(created_date__lte=timezone.now())
+    bug_list = Bug.objects.filter(created_date__lte=timezone.now())
+    page = request.GET.get('page', 1)
+    
+    paginator = Paginator(bug_list, 5)
+    
+    try:
+        bugs = paginator.page(page)
+    except PageNotAnInteger:
+        bugs = paginator.page(1)
+    except EmptyPage:
+        bugs = paginator.page(paginator.num_pages)
     
     context = {
         'bugs': bugs

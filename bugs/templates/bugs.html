@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block bugs_active%}active{% endblock %}
 {% block title %}Bugs{% endblock %}
-
 {% block content %}
 <main class="container" id="main">
   {% block heading %}
@@ -13,9 +12,7 @@
       </h1>
     </div>
   </div>
-  {% endblock %}
-  
-  {% for bug in bugs %}
+  {% endblock %} {% for bug in bugs %}
   <div class="row">
     <div class="col-sm-12">
       <div class="card border-primary mb-3">
@@ -40,6 +37,45 @@
     </div>
   </div>
   {% endfor %}
+
+
+  <div class="container">
+    {% if bugs.has_other_pages %}
+    <ul class="pagination">
+      {% if bugs.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ bugs.previous_page_number }}">&laquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&laquo;</a>
+      </li>
+      {% endif %} 
+      {% for i in bugs.paginator.page_range %}
+      {% if bugs.number == i %}
+      <li class="page-item active">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% if bugs.has_next %}
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ bugs.next_page_number }}">&raquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+
 
 </main>
 {% endblock %}
