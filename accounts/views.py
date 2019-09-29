@@ -101,8 +101,8 @@ def profile(request):
         bugs = bug_paginator.page(1)
         features = feature_paginator.page(1)
     except EmptyPage:
-        bugs = bug_paginator.page(paginator.num_pages)
-        features = feature_paginator.page(paginator.num_pages)
+        bugs = bug_paginator.page(bug_paginator.num_pages)
+        features = feature_paginator.page(feature_paginator.num_pages)
     
     
     context = {
