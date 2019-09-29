@@ -13,14 +13,14 @@ def show_all_features(request):
     View to show all our features on
     one page
     """
-    feature_list = Feature.objects.filter(created_date__lte=timezone.now(), paid=True)
+    feature_list = Feature.objects.filter(created_date__lte=timezone.now(), paid=True).exclude(status='Complete').order_by('status')
     page = request.GET.get('page', 1)
     
     paginator = Paginator(feature_list, 5)
     
     try:
         features = paginator.page(page)
-    except PageNotAnIntger:
+    except PageNotAnInteger:
         features = paginator.page(1)
     except EmptyPage:
         features = paginator.page(paginator.num_pages)

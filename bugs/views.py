@@ -13,7 +13,7 @@ def show_all_bugs(request):
     View to show all our bugs on
     one page
     """
-    bug_list = Bug.objects.filter(created_date__lte=timezone.now())
+    bug_list = Bug.objects.filter(created_date__lte=timezone.now()).exclude(status='Complete').order_by('status')
     page = request.GET.get('page', 1)
     
     paginator = Paginator(bug_list, 5)
