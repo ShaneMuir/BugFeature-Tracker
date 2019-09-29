@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.c9
+*.~c9_*
 env.py
 sent_emails/
 unicornattractor/settings/local.py
