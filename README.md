@@ -21,3 +21,8 @@ I want to credit the guy for the device mockups, very handy and plenty of device
 Pagination - https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
 
 Bootswatch - https://bootswatch.com/lux/
+
+404 page - https://freefrontend.com/html-css-404-page-templates/
+Dave - https://codepen.io/theyve
+
+
