@@ -90,7 +90,7 @@ strong {
     padding-right: 3.8125rem !important;
 }
 
-#myAlert {
+#featureAlert{
   width: 100%;
   height: auto;
   position: relative;
@@ -100,7 +100,7 @@ strong {
   border: 1px solid transparent;
 }
 
-.close {
+.feature_close{
   position: absolute;
   top: 10px;
   right: 10px;

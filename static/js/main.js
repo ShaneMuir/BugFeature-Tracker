@@ -10,15 +10,13 @@ $(document).ready(function() {
    
    
 
-	if(localStorage.getItem('msgState') != 'shown') {
-  	$('#myAlert').slideDown('slow');
-    localStorage.setItem('msgState', 'shown');
+	if(localStorage.getItem('featureMsgState') != 'shown') {
+  	$('#featureAlert').slideDown('slow');
+    localStorage.setItem('featureMsgState', 'shown');
   }
-  $('.close').click(function(e){
-  	$('#myAlert').slideUp('slow');
+  $('.feature_close').click(function(e){
+  	$('#featureAlert').slideUp('slow');
   }); //End of click event
-
-
    
    
 });
