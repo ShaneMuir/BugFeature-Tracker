@@ -14,7 +14,7 @@ $(document).ready(function() {
   	$('#featureAlert').slideDown('slow');
     localStorage.setItem('featureMsgState', 'shown');
   }
-  $('.feature_close').click(function(e){
+  $('.close').click(function(e){
   	$('#featureAlert').slideUp('slow');
   }); //End of click event
    
