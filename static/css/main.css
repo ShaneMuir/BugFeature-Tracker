@@ -84,6 +84,30 @@ strong {
 
 /* End of Helpers */
 
+/* My alert */
+
+.alert-dismissible {
+    padding-right: 3.8125rem !important;
+}
+
+#myAlert {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: none;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* End of alert */
+
 /* Home app landing page */
 
 .masthead {
@@ -294,7 +318,7 @@ form button a:hover {
 
 @media (max-width: 500px) {
   .card-footer {
-        padding: 0.75rem 1.25rem 1.75rem;
+    padding: 0.75rem 1.25rem 1.75rem;
   }
   .margin-b-0 {
     margin-bottom: 0px;

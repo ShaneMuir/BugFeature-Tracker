@@ -3,6 +3,17 @@
 {% block title %}Features{% endblock %} 
 
 {% block content %}
+<div id="myAlert" class="alert alert-dismissible alert-primary text-center">
+  {% if user.is_authenicated %}
+  <strong>Hey {{ request.user }},</strong> please be advised that feature requests cost £20 and feature upvotes cost £5.
+  {% else %}
+  <strong>Hey User,</strong> please be advised that feature requests cost £20 and feature upvotes cost £5.
+  {% endif %}
+  <button type="button" class="close" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+
 <main class="container" id="main">
   {% block heading %}
   <div class="row">
@@ -13,20 +24,15 @@
       </h1>
     </div>
   </div>
-  {% endblock %}
-  
-  {% for feature in features %}
+  {% endblock %} {% for feature in features %}
   <div class="row">
     <div class="col-sm-12">
       <div class="card border-primary mb-3">
         <div class="card-header">
           {% if feature.status == "To do" %}
-          <span class="badge badge-danger">{{ feature.status }}</span>
-          {% elif feature.status == "In progress" %}
-          <span class="badge badge-warning">{{ feature.status }}</span>
-          {% else %}
-          <span class="badge badge-success">{{ feature.status }}</span>
-          {% endif %}
+          <span class="badge badge-danger">{{ feature.status }}</span> {% elif feature.status == "In progress" %}
+          <span class="badge badge-warning">{{ feature.status }}</span> {% else %}
+          <span class="badge badge-success">{{ feature.status }}</span> {% endif %}
           <span class="card-link"><i class="fa fa-eye p5"></i>{{ feature.views }}
           <i class="fa fa-arrow-up p5"></i>{{ feature.feature_upvotes }}</span></div>
         <div class="card-body">
@@ -43,9 +49,9 @@
     </div>
   </div>
   {% endfor %}
-  
-  
-  
+
+
+
   <div class="container">
     {% if features.has_other_pages %}
     <ul class="pagination">
@@ -57,9 +63,7 @@
       <li class="page-item disabled">
         <a class="page-link">&laquo;</a>
       </li>
-      {% endif %} 
-      {% for i in features.paginator.page_range %}
-      {% if features.number == i %}
+      {% endif %} {% for i in features.paginator.page_range %} {% if features.number == i %}
       <li class="page-item active">
         <a class="page-link" href="?page={{ i }}">{{ i }}</a>
       </li>
@@ -67,9 +71,7 @@
       <li class="page-item">
         <a class="page-link" href="?page={{ i }}">{{ i }}</a>
       </li>
-      {% endif %}
-      {% endfor %}
-      {% if features.has_next %}
+      {% endif %} {% endfor %} {% if features.has_next %}
       </li>
       <li class="page-item">
         <a class="page-link" href="?page={{ features.next_page_number }}">&raquo;</a>
@@ -82,7 +84,7 @@
     </ul>
     {% endif %}
   </div>
-  
-  
+
+
 </main>
 {% endblock %}

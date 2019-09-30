@@ -2,6 +2,17 @@
 {% block bugs_active%}active{% endblock %}
 {% block title %}Bugs{% endblock %}
 {% block content %}
+<div id="myAlert" class="alert alert-dismissible alert-primary text-center">
+  {% if user.is_authenicated %}
+  <strong>Hey {{ request.user }},</strong> please be advised that bug requests are free!
+  {% else %}
+  <strong>Hey User,</strong> please be advised that bug requests are free!
+  {% endif %}
+  <button type="button" class="close" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+
 <main class="container" id="main">
   {% block heading %}
   <div class="row">

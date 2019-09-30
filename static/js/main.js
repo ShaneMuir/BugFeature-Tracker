@@ -9,5 +9,16 @@ $(document).ready(function() {
    });
    
    
+
+	if(localStorage.getItem('msgState') != 'shown') {
+  	$('#myAlert').slideDown('slow');
+    localStorage.setItem('msgState', 'shown');
+  }
+  $('.close').click(function(e){
+  	$('#myAlert').slideUp('slow');
+  }); //End of click event
+
+
+   
    
 });
