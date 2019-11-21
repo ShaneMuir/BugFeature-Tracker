@@ -1,6 +1,6 @@
 # Milestone 5
 
-[![Build Status](https://travis-ci.org/ShaneMuir/milestone-5.svg?branch=master)](https://travis-ci.org/ShaneMuir/milestone-5)
+[![Build Status](https://travis-ci.org/ShaneMuir/BugFeature-Tracker.svg?branch=master)](https://travis-ci.org/ShaneMuir/BugFeature-Tracker)
 
 ### [Demo Here](https://milestone-5.herokuapp.com/)
 
